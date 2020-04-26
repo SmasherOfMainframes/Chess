@@ -7,8 +7,8 @@
 /*
 Pawn = 1
 Rook = 2
-Bshp = 3
-Knht = 4
+Knht = 3
+Bshp = 4
 Quen = 5
 King = 6
 */

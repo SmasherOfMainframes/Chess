@@ -13,15 +13,15 @@
 
 int main(){
 
-	draw_board();
-
-
-
 	initialize_regular();
+
+	main_board.at(9).move_tenant(main_board.at(17));
 
 	draw_board();
 
 	// narrator();
 	
+	// std::vector<int*> test {new int(5)};
+
 	return 0;
 }

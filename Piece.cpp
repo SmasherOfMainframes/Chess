@@ -17,3 +17,10 @@ int Piece::get_owner(){
 char Piece::get_symbol(){
 	return symbol;
 }
+
+// bool Piece::get_first_move(){
+// 	std::cout << "asd";
+// }
+// void Piece::set_first_move(bool){
+
+// }

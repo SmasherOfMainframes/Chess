@@ -50,7 +50,7 @@ int check_coord2(std::string _coord, int _turn, std::string _phase){
 		return check_coord1_val;
 	}
 
-	if(main_board.at(coord_conversion(_coord)).get_charset() != '!'){
+	if(main_board.at(coord_conversion(_coord)).get_charset() != MOVES_TILE_CHAR){
 		return 5;
 	}
 	return 0;
@@ -61,24 +61,44 @@ void display_moves(int _coord, int _turn, std::string _phase){
 	if(_phase == "coord1"){
 		move_vec.clear();
 
+		int temp_team = main_board.at(_coord).get_tenant_team();
+
+		// PAWN
 		if(main_board.at(_coord).get_tenant_rank() == 1){
+			
+			// because the pawn is sooooo special we have to do lots of extra work
+			std::cerr << "Entering the danger zone" << std::endl;
 			pawn_move_list(move_vec);
-			if(main_board.at(_coord).get_tenant_team() == 1){
+			
+			// makes black pawns moveset move down, rather than up
+			if(temp_team == -1){
 				for(size_t i = 0; i < move_vec.size(); i++){
 					move_vec.at(i).at(1) *= -1; 
-					// makes black pawns moveset move down, rather than up
 				}
 			}
+			
+			// Checking if the pawn can capture a diagonal enemy
+			if(main_board.at(_coord + (9 * temp_team)).get_tenant_team() == temp_team*-1){
+				move_vec.push_back(std::vector<int>{temp_team*1, temp_team*1});
+			}
+			if(main_board.at(_coord + (7 * temp_team)).get_tenant_team() == temp_team*-1){
+				move_vec.push_back(std::vector<int>{temp_team*-1, temp_team*1});
+			}
+			
+			// if(!main_board.at(_coord).get_first_move()){
+			// 	move_vec.at(3) = move_vec.at(1);
+			// }
+				
 		}
 
 		// set temporary unique charset for selected piece
-		main_board.at(_coord).set_charset('#');
-		main_board.at(_coord).set_charset_color("\033[33m");
+		main_board.at(_coord).set_charset(SELF_TILE_CHAR);
+		main_board.at(_coord).set_charset_color(MOVES_TILE_COL);
 
 		for(size_t i = 0; i < move_vec.size(); i++){
 			int temp_coord = _coord + move_vec.at(i).at(0) + (8 * move_vec.at(i).at(1));
-			main_board.at(temp_coord).set_charset('!');
-			main_board.at(temp_coord).set_charset_color("\033[33m");
+			main_board.at(temp_coord).set_charset(MOVES_TILE_CHAR);
+			main_board.at(temp_coord).set_charset_color(MOVES_TILE_COL);
 		}
 	} else {
 		for(size_t i = 0; i < move_vec.size(); i++){
@@ -94,7 +114,7 @@ void display_moves(int _coord, int _turn, std::string _phase){
 int narrator(){
 	std::string coordinate1;
 	std::string coordinate2;
-	static int turn {-1};
+	static int turn {1};
 	static std::string error_message {""};
 	static std::string phase;
 

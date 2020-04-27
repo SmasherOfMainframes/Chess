@@ -39,14 +39,16 @@ void Coordinate::print_generic(){
 			  << get_charset_color() << get_charset()
 			  << get_charset_color() << get_charset() 
 			  << get_charset_color() << get_charset()
-			  << get_charset_color() << get_charset();
+			  << get_charset_color() << get_charset()
+			  << RESET;
 }
 void Coordinate::print_unique(){
 	std::cout << get_charset_color() << get_charset() 
 			  << get_charset_color() << get_charset() 
 			  << get_tenant_team_color() << get_tenant_symbol() 
 			  << get_charset_color() << get_charset()
-			  << get_charset_color() << get_charset(); 
+			  << get_charset_color() << get_charset()
+			  << RESET; 
 }
 
 std::string Coordinate::get_tenant_team_color(){

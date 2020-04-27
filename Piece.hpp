@@ -27,6 +27,12 @@ class Piece
 		int get_rank();
 		int get_owner();
 		char get_symbol();
+
+		// virtual bool get_capture_state();
+		// virtual void set_capture_state(bool);
+
+		// virtual bool get_first_move();
+		// virtual void set_first_move(bool);
 };
 
 #endif

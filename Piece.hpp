@@ -24,6 +24,7 @@ class Piece
 		Piece(int, char, int);
 		~Piece();
 
+		int get_rank();
 		int get_owner();
 		char get_symbol();
 };

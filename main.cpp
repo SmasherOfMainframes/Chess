@@ -11,6 +11,7 @@
 #include "Piece.hpp"
 #include "Coordinate.hpp"
 
+#include "move_list_fns.hpp"
 #include "init_board.hpp"	// initializes board
 #include "draw_fns.hpp"		// functions for drawing and creates main objects of Coordinate
 #include "setup_fns.hpp"
@@ -34,8 +35,16 @@ int main(){
 		system("clear");
 	}
 
-	// std::cout << "\033[35m" << "hello world" << RESET << std::endl;
+	std::cout << "\033[35m" << "hello world" << RESET << std::endl;
 
+	// std::vector<std::vector<int>>* temp = new std::vector<std::vector<int>>;
+	// std::vector<int> vect {0, 1, 5, 3, 5};
+	// temp->push_back(vect);
+
+	// std::cout << temp->at(0).at(0) << std::endl;
+	// std::cout << temp->at(0).at(1) << std::endl;
+	// std::cout << temp->at(0).at(2) << std::endl;
+	// std::cout << temp->at(0).at(3) << std::endl;
 
 	return 0;
 }

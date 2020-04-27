@@ -7,9 +7,9 @@ void title(){
 	std::cout << "           ~ CHESS ~\n" << std::endl;
 }
 
-void move(int _i, int _f){
+void move(int _initial, int _final){
 	// 9 17
-	main_board.at(_i).move_tenant(main_board.at(_f));
+	main_board.at(_initial).move_tenant(main_board.at(_final));
 }
 
 int check_coord1(std::string _coord, int _turn){
@@ -39,11 +39,34 @@ int check_coord1(std::string _coord, int _turn){
 	return 0;
 }
 
+void display_moves(int _coord, int _turn, std::string _phase){
+	static std::vector<std::vector<int>> move_vec;
+	if(_phase == "coord1"){
+		move_vec.clear();
+
+		if(main_board.at(_coord).get_tenant_rank() == 1){
+			pawn_move_list(move_vec);
+		}
+		for(size_t i = 0; i < move_vec.size(); i++){
+			int temp_coord = _coord + move_vec.at(i).at(0) + (8 * move_vec.at(i).at(1));
+			main_board.at(temp_coord).set_charset('!');
+			main_board.at(temp_coord).set_charset_color("\033[33m");
+		}
+	} else {
+		for(size_t i = 0; i < move_vec.size(); i++){
+			int temp_coord = _coord + move_vec.at(i).at(0) + (8 * move_vec.at(i).at(1));
+			main_board.at(temp_coord).reset_charset();
+			main_board.at(temp_coord).set_charset_color("\033[0m");
+		}
+	}
+}
+
 int narrator(){
 	std::string coordinate1;
 	std::string coordinate2;
 	static int turn {-1};
 	static std::string error_message {""};
+	static std::string phase {"coord1"};
 
 	if(error_message.size()>1){
 		std::cout << error_message << std::endl;
@@ -68,13 +91,23 @@ int narrator(){
 		return 0;
 	}
 
+	display_moves(coord_conversion(coordinate1), turn, phase);
+	phase = "coord2";
+
+	system("clear");
+	title();
+	draw_board();
+	
 	std::cout << "Enter coordinate of target : ";
 	std::cin >> coordinate2;
+
+	display_moves(coord_conversion(coordinate1), turn, phase);
 
 	move(coord_conversion(coordinate1), coord_conversion(coordinate2));
 	turn*=-1;
 
 	error_message = "";
+	phase = "coord1";
 	return 0;
 }
 

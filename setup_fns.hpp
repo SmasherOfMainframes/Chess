@@ -3,6 +3,8 @@
 
 // regular setup
 
+//these should be converted to smart shared pointers for auto deletion
+
 std::vector<Piece*> teamB {
 	new Piece(2, 'R', -1),
 	new Piece(3, 'K', -1),

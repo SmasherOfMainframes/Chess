@@ -1,7 +1,8 @@
 #include "Coordinate.hpp"
 
 Coordinate::Coordinate(int _x, int _y, char _c)
-: pos_x{_x}, pos_y{_y}, default_charset{_c}, charset{_c}, tenant{nullptr} {
+: pos_x{_x}, pos_y{_y}, default_charset{_c}, charset{_c}, 
+  tenant{nullptr}, charset_color{"\033[0m"} {
 
 }
 
@@ -23,11 +24,22 @@ void Coordinate::reset_charset(){
 	charset = default_charset;
 }
 
+void Coordinate::set_charset_color(std::string new_col){
+	charset_color = new_col;
+}
+std::string Coordinate::get_charset_color(){
+	return charset_color;
+}
+
 void Coordinate::print_generic(){
-	std::cout << get_charset() << get_charset() << get_charset();
+	std::cout << get_charset_color() << get_charset() 
+			  << get_charset_color() << get_charset()
+			  << get_charset_color() << get_charset();
 }
 void Coordinate::print_unique(){
-	std::cout << get_charset() << get_tenant_team_color() << get_tenant_symbol() << RESET << get_charset();
+	std::cout << get_charset_color() << get_charset() 
+			  << get_tenant_team_color() << get_tenant_symbol() 
+			  << get_charset_color() << get_charset();
 }
 
 std::string Coordinate::get_tenant_team_color(){
@@ -37,7 +49,7 @@ std::string Coordinate::get_tenant_team_color(){
 	} else if(team == -1){
 		return MAGENTA;
 	} else {
-		return RESET;
+		return get_charset_color();
 	}
 }
 int Coordinate::get_tenant_team(){
@@ -52,6 +64,9 @@ char Coordinate::get_tenant_symbol(){
 	} else {
 		return tenant -> get_symbol();
 	}
+}
+int Coordinate::get_tenant_rank(){
+	return tenant -> get_rank();
 }
 void Coordinate::set_tenant(Piece* ptr){
 	tenant = ptr;

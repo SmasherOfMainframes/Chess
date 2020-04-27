@@ -8,6 +8,9 @@ Piece::~Piece(){
 	std::cout << "DESTRUCTOR CALLED" << std::endl;
 }
 
+int Piece::get_rank(){
+	return rank;
+}
 int Piece::get_owner(){
 	return owner;
 }

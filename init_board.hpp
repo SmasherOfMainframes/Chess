@@ -3,7 +3,7 @@
 
 #include "Coordinate.hpp"
 
-char blk_char {'#'};
+char blk_char {':'};
 
 std::vector<Coordinate> main_board {
 Coordinate(1, 1, ' '),

@@ -4,7 +4,7 @@
 #include <string>
 
 void title(){
-	std::cout << "       ~ CHESS ~\n" << std::endl;
+	std::cout << "           ~ CHESS ~\n" << std::endl;
 }
 
 void move(int _i, int _f){
@@ -29,11 +29,13 @@ int check_coord1(std::string _coord, int _turn){
 	
 	// at this point the input is safe to put into coord_conversion()
 
-	if(main_board.at(coord_conversion(_coord)).get_tenant_team() != _turn){
-		return 2;
+	int team_number {main_board.at(coord_conversion(_coord)).get_tenant_team()};
+	if(team_number != _turn){
+		if(team_number == -2){
+			return 2;
+		}
+		return 3;
 	}
-
-	
 	return 0;
 }
 
@@ -47,18 +49,20 @@ int narrator(){
 		std::cout << error_message << std::endl;
 	}
 
-	std::string active = (turn == 1) ? "Black's " : "White's " ;
+	std::string active = (turn == 1) ? "Cyan's " : "Purple's " ;
 	std::cout << active << "turn." << std::endl;
 
 	std::cout << "Enter coordinate of piece to move : ";
 	std::cin >> coordinate1;
 
+	// Checks validity of user input
 	int error_code = check_coord1(coordinate1, turn);
 	if(error_code){
 		if(error_code==1){
 			error_message = "Invalid coordinate.";	
-		} 
-		if(error_code==2){
+		} else if(error_code == 2){
+			error_message = "No piece there!";
+		} else if(error_code == 3){
 			error_message = "Not your piece!";
 		}
 		return 0;

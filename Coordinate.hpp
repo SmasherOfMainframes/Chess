@@ -3,8 +3,14 @@
 
 #include <vector>
 #include <iostream>
+#include <string>
 
 #include "Piece.hpp"
+
+#define RESET   "\033[0m"
+#define WHITE   "\033[37m"
+#define CYAN    "\033[36m"
+#define MAGENTA "\033[35m"
 
 class Coordinate
 {
@@ -33,6 +39,7 @@ class Coordinate
 		void print_generic();			// used to print out the top or bottom row of board coordinate
 		void print_unique();			// used to print out the middle row of the board coordinate
 
+		std::string get_tenant_team_color();
 		int get_tenant_team();
 		char get_tenant_symbol();		// gets the symbol of current piece, if there is one
 		void set_tenant(Piece*);		// associates a piece

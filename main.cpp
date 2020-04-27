@@ -3,6 +3,11 @@
 #include <vector>
 #include <string>
 
+#define RESET   "\033[0m"
+#define WHITE   "\033[37m"
+#define CYAN    "\033[36m"
+#define MAGENTA "\033[35m"
+
 #include "Piece.hpp"
 #include "Coordinate.hpp"
 
@@ -28,6 +33,9 @@ int main(){
 		narrator();
 		system("clear");
 	}
+
+	// std::cout << "\033[35m" << "hello world" << RESET << std::endl;
+
 
 	return 0;
 }

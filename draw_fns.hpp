@@ -3,7 +3,7 @@
 
 
 void draw_board(){
-	std::cout << "     A  B  C  D  E  F  G  H" << std::endl;
+	std::cout << "      A    B    C    D    E    F    G    H" << std::endl;
 	for(int i = 7; i >= 0; i--){
 		for(int j = 0; j < 3; j++){
 			if(j == 0 || j == 2){
@@ -26,9 +26,9 @@ void draw_board(){
 			std::cout << std::endl;	
 		}
 	}
-	std::cout << "     A  B  C  D  E  F  G  H" << std::endl;
+	std::cout << "      A    B    C    D    E    F    G    H" << std::endl;
 	std::cout << std::endl;
-	std::cout << "--------------------------------" << std::endl << std::endl;
+	std::cout << "------------------------------------------------" << std::endl << std::endl;
 }
 
 #endif

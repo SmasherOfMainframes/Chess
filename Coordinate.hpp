@@ -38,6 +38,7 @@ class Coordinate
 		void reset_charset();			// rests charset to default charset
 
 		void set_charset_color(std::string);
+		void reset_charset_color();
 		std::string get_charset_color();
 
 		void print_generic();			// used to print out the top or bottom row of board coordinate

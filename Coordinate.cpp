@@ -30,16 +30,23 @@ void Coordinate::set_charset_color(std::string new_col){
 std::string Coordinate::get_charset_color(){
 	return charset_color;
 }
+void Coordinate::reset_charset_color(){
+	charset_color = "\033[0m";
+}
 
 void Coordinate::print_generic(){
 	std::cout << get_charset_color() << get_charset() 
+			  << get_charset_color() << get_charset()
+			  << get_charset_color() << get_charset() 
 			  << get_charset_color() << get_charset()
 			  << get_charset_color() << get_charset();
 }
 void Coordinate::print_unique(){
 	std::cout << get_charset_color() << get_charset() 
+			  << get_charset_color() << get_charset() 
 			  << get_tenant_team_color() << get_tenant_symbol() 
-			  << get_charset_color() << get_charset();
+			  << get_charset_color() << get_charset()
+			  << get_charset_color() << get_charset(); 
 }
 
 std::string Coordinate::get_tenant_team_color(){

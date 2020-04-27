@@ -1,27 +1,33 @@
 // CHESS
 #include <iostream>
 #include <vector>
-#include <memory>
+#include <string>
 
 #include "Piece.hpp"
 #include "Coordinate.hpp"
 
-#include "narrator.hpp"
 #include "init_board.hpp"	// initializes board
 #include "draw_fns.hpp"		// functions for drawing and creates main objects of Coordinate
 #include "setup_fns.hpp"
+#include "coord_conversion.hpp"
+#include "narrator.hpp"
+
 
 int main(){
 
 	initialize_regular();
 
-	main_board.at(9).move_tenant(main_board.at(17));
+	bool run {true};
+	// bool run {false};
 
-	draw_board();
+	system("clear");
 
-	// narrator();
-	
-	// std::vector<int*> test {new int(5)};
+	while(run){
+		title();
+		draw_board();
+		narrator();
+		system("clear");
+	}
 
 	return 0;
 }

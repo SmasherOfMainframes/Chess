@@ -30,6 +30,12 @@ void Coordinate::print_unique(){
 	std::cout << get_charset() << get_tenant_symbol() << get_charset();
 }
 
+int Coordinate::get_tenant_team(){
+	if(tenant){
+		return tenant -> get_owner();
+	}
+	return -2;
+}
 char Coordinate::get_tenant_symbol(){
 	if(!tenant){
 		return get_charset();

@@ -3,7 +3,7 @@
 
 
 void draw_board(){
-	for(int i = 0; i < 8; i++){
+	for(int i = 7; i >= 0; i--){
 		for(int j = 0; j < 3; j++){
 			for(int k = 0; k < 8; k++){
 				if(j == 0 || j == 2){
@@ -15,6 +15,8 @@ void draw_board(){
 			std::cout << std::endl;	
 		}
 	}
+	std::cout << std::endl;
+	std::cout << "------------------------" << std::endl << std::endl;
 }
 
 #endif

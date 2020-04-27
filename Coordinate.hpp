@@ -33,8 +33,9 @@ class Coordinate
 		void print_generic();			// used to print out the top or bottom row of board coordinate
 		void print_unique();			// used to print out the middle row of the board coordinate
 
+		int get_tenant_team();
 		char get_tenant_symbol();		// gets the symbol of current piece, if there is one
-		void set_tenant(Piece*);			// associates a piece
+		void set_tenant(Piece*);		// associates a piece
 		void move_tenant(Coordinate&);	// moves piece
 };
 

@@ -12,11 +12,11 @@ class Pawn : public Piece
 	public:
 		Pawn(int, char, int);
 
-		bool get_capture_state();
-		void set_capture_state(bool);
+		// bool get_capture_state();
+		// void set_capture_state(bool);
 
-		bool get_first_move();
-		void set_first_move(bool);
+		virtual bool get_first_move();
+		virtual void set_first_move(bool);
 
 };
 

@@ -22,7 +22,7 @@ class Piece
 
 	public:
 		Piece(int, char, int);
-		~Piece();
+		virtual ~Piece();
 
 		int get_rank();
 		int get_owner();
@@ -31,8 +31,8 @@ class Piece
 		// virtual bool get_capture_state();
 		// virtual void set_capture_state(bool);
 
-		// virtual bool get_first_move();
-		// virtual void set_first_move(bool);
+		virtual bool get_first_move();
+		virtual void set_first_move(bool);
 };
 
 #endif

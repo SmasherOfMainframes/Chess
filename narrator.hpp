@@ -3,6 +3,17 @@
 
 #include <string>
 
+#include "move_list_fns.hpp"
+
+// // move_list_fns.hpp prototypes
+// void pawn_move_list(std::vector<std::vector<int>>);
+
+// void check_obstruction_pawn(int _coord, std::vector<std::vector<int>> _move_vec, int _team){ 
+// 	if(main_board.at(_coord + (8*_team)).get_tenant_team() != -2){
+// 		_move_vec.at(0).at(1) = 0;
+// 	}
+// }
+
 void title(){
 	std::cout << "                   ~ CHESS ~\n" << std::endl;
 }
@@ -85,9 +96,12 @@ void display_moves(int _coord, int _turn, std::string _phase){
 				move_vec.push_back(std::vector<int>{temp_team*-1, temp_team*1});
 			}
 			
-			// if(!main_board.at(_coord).get_first_move()){
-			// 	move_vec.at(3) = move_vec.at(1);
-			// }
+			if(main_board.at(_coord).get_tenant_first_move()){
+				move_vec.push_back(std::vector<int>{temp_team*0, temp_team*2});
+			}
+
+			// Check for obstructions
+			// check_obstruction_pawn(_coord, move_vec, temp_team);
 				
 		}
 
@@ -169,6 +183,15 @@ int narrator(){
 			error_message = "Not a valid move!";
 		}
 		return 0;
+	}
+
+	if(
+		main_board.at(coord_conversion(coordinate1)).get_tenant_rank() == 1
+	    &&
+	    main_board.at(coord_conversion(coordinate1)).get_tenant_first_move() == true
+	    ) {
+		
+		main_board.at(coord_conversion(coordinate1)).set_tenant_first_move(false);
 	}
 
 	move(coord_conversion(coordinate1), coord_conversion(coordinate2));

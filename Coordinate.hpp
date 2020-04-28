@@ -50,6 +50,9 @@ class Coordinate
 		int get_tenant_rank();
 		void set_tenant(Piece*);		// associates a piece
 		void move_tenant(Coordinate&);	// moves piece
+
+		bool get_tenant_first_move();
+		void set_tenant_first_move(bool);
 };
 
 

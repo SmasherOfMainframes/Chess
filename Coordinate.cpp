@@ -84,3 +84,10 @@ void Coordinate::move_tenant(Coordinate &new_coord){
 	new_coord.set_tenant(tenant);
 	set_tenant(nullptr);
 }
+
+bool Coordinate::get_tenant_first_move(){
+	return tenant -> get_first_move();
+}
+void Coordinate::set_tenant_first_move(bool _b){
+	tenant -> set_first_move(_b);
+}

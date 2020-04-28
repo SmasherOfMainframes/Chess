@@ -100,7 +100,10 @@ void pawn_capture_wrap(){
 	main_board.at(3).set_tenant(teamW.at(8));
 	main_board.at(60).set_tenant(teamB.at(0));
 }
-
+void pawn_promote(){
+	main_board.at(40).set_tenant(teamW.at(8));
+	main_board.at(23).set_tenant(teamB.at(0));
+}
 
 
 

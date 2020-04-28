@@ -80,12 +80,17 @@ int narrator(){
 			main_board.at(int_coord2).set_tenant_first_move(false);
 		}
 
-		if(turn==1){
-			if(int_coord2 >= 56){
-				char new_rank;
+		if((turn == 1 && int_coord2 > 55) || (turn == -1 && int_coord2 < 8)){
+			char new_rank;
+			bool pp_bool{true};
+			while(pp_bool){
 				std::cout << "Promote pawn to symbol : " ;
 				std::cin >> new_rank;
-				main_board.at(int_coord2).tenant_pawn_promotion(new_rank);
+				if(main_board.at(int_coord2).tenant_pawn_promotion(new_rank)){
+					pp_bool = false;
+				} else {
+					std::cout << "Not a valid symbol." << std::endl;
+				}
 			}
 		}
 	}

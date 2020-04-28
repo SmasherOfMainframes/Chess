@@ -18,7 +18,8 @@
 #include "src/public/coord_checkers.hpp"	// checks validity of entered coordinates
 
 #include "src/movesets/check_obstruction.hpp"
-#include "src/movesets/pawn_moveset.hpp"
+#include "src/movesets/moveset_pawn.hpp"
+#include "src/movesets/moveset_rook.hpp"
 #include "src/movesets/display_moves.hpp"
 
 #include "src/public/narrator.hpp"
@@ -27,9 +28,10 @@ int main(){
 
 	freopen("output.txt", "w", stderr);
 
-	// initialize_regular();			// regular chess layout
-	// pawn_firstmov_obst();			// test double first move and obstruction
-	pawn_capture_wrap();				// test to make sure diagonal capture doesnt wrap around the board
+	initialize_regular();				// regular chess layout
+	// pawn_firstmov_obst();				// test double first move and obstruction
+	// pawn_capture_wrap();					// test to make sure diagonal capture doesnt wrap around the board
+	// pawn_promote();						// test pawn promotion
 
 	bool run {true};
 	// bool run {false};

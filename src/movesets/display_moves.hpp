@@ -16,7 +16,7 @@ void display_moves(int _coord, int _turn, std::string _phase){
 				break;
 
 			case 2:
-				// ---
+				rook_moves(move_vec, temp_team, _coord);
 				break;
 
 			case 3:

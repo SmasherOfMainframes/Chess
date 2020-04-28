@@ -62,7 +62,7 @@ class Coordinate
 		bool get_tenant_first_move();
 		void set_tenant_first_move(bool);
 
-		void tenant_pawn_promotion(char);
+		int tenant_pawn_promotion(char);
 };
 
 

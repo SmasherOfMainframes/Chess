@@ -3,7 +3,6 @@
 
 
 void pawn_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord){
-	std::cerr << "Entering pawn_moves()" << std::endl;
 	// check if a team or enemy piece is blocking one tile ahead
 	if(
 		!team_obstruction(_coord + (8*_team), _team)
@@ -24,18 +23,12 @@ void pawn_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord){
 				}
 			}
 	}
-	
-	std::cerr << "Expression = " << 31.5+(_team*23.5) << std::endl;
-	std::cerr << "    _coord = " << _coord << std::endl;
-	std::cerr << " _team > 0 = " << _coord + (_team > 0) << std::endl;
-	std::cerr << "      team = " << _team << std::endl;
 
 	// Checking if the pawn can capture a diagonal enemy
 	// without wrapping around the board
 	
 	// Also checks for special case where White H7 / coord 55 or 
 	// Black A2 / coord 8, prevents out of bounds vector index
-	std::cerr << "Entering first loop" << std::endl;
 	if(
 		_coord != 31.5+(_team*23.5)
 		&&
@@ -45,7 +38,6 @@ void pawn_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord){
 		) 	{
 				_vec.push_back(std::vector<int>{_team*1, _team*1});
 			}
-	std::cerr << "Entering second loop" << std::endl;
 	if(
 		main_board.at(_coord + (7 * _team)).get_tenant_team() == _team*-1
 		&&

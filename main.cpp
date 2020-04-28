@@ -1,5 +1,21 @@
 // CHESS
 
+/*
+TODO:
+-Add Bishop move function
+-Add Queen move function
+-Add King move function
+-Add Knight move function
+
+-replace std::endl with \n where possible
+
+-Implement Check game state
+-Implement Checkmate game state
+-Implement Stalemate game state
+
+-AI????
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -20,6 +36,8 @@
 #include "src/movesets/check_obstruction.hpp"
 #include "src/movesets/moveset_pawn.hpp"
 #include "src/movesets/moveset_rook.hpp"
+#include "src/movesets/moveset_bshp.hpp"
+#include "src/movesets/moveset_quen.hpp"
 #include "src/movesets/display_moves.hpp"
 
 #include "src/public/narrator.hpp"
@@ -32,7 +50,9 @@ int main(){
 	// pawn_firstmov_obst();				// test double first move and obstruction
 	// pawn_capture_wrap();					// test to make sure diagonal capture doesnt wrap around the board
 	// pawn_promote();						// test pawn promotion
-	rook_move_test();
+	// rook_move_test();
+	// bshp_move_test();
+	quen_move_test();
 
 	bool run {true};
 	// bool run {false};

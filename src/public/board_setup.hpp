@@ -14,41 +14,41 @@ THIS IS IMPOSSIBLE TO WORK WITH
 */
 
 std::vector<Piece*> teamB {
-	new Pawn(1, 'p', -1),
-	new Pawn(1, 'p', -1),
-	new Pawn(1, 'p', -1),
-	new Pawn(1, 'p', -1),
-	new Pawn(1, 'p', -1),
-	new Pawn(1, 'p', -1),
-	new Pawn(1, 'p', -1),
-	new Pawn(1, 'p', -1),
-	new Piece(2, 'R', -1),
-	new Piece(3, 'K', -1),
-	new Piece(4, 'B', -1),
-	new Piece(5, 'Q', -1),
-	new Piece(6, '$', -1),
-	new Piece(4, 'B', -1),
-	new Piece(3, 'K', -1),
-	new Piece(2, 'R', -1),
+	new Pawn(1, 'p', -1),	// 0
+	new Pawn(1, 'p', -1),	// 1
+	new Pawn(1, 'p', -1),	// 2
+	new Pawn(1, 'p', -1),	// 3
+	new Pawn(1, 'p', -1),	// 4
+	new Pawn(1, 'p', -1),	// 5
+	new Pawn(1, 'p', -1),	// 6
+	new Pawn(1, 'p', -1),	// 7
+	new Piece(2, 'R', -1),	// 8
+	new Piece(3, 'K', -1),	// 9
+	new Piece(4, 'B', -1),	// 10
+	new Piece(5, 'Q', -1),	// 11
+	new Piece(6, '$', -1),	// 12
+	new Piece(4, 'B', -1),	// 13
+	new Piece(3, 'K', -1),	// 14
+	new Piece(2, 'R', -1),	// 15
 	
 };
 std::vector<Piece*> teamW {
-	new Piece(2, 'R', 1),
-	new Piece(3, 'K', 1),
-	new Piece(4, 'B', 1),
-	new Piece(6, '$', 1),
-	new Piece(5, 'Q', 1),
-	new Piece(4, 'B', 1),
-	new Piece(3, 'K', 1),
-	new Piece(2, 'R', 1),
-	new Pawn(1, 'p', 1),
-	new Pawn(1, 'p', 1),
-	new Pawn(1, 'p', 1),
-	new Pawn(1, 'p', 1),
-	new Pawn(1, 'p', 1),
-	new Pawn(1, 'p', 1),
-	new Pawn(1, 'p', 1),
-	new Pawn(1, 'p', 1),
+	new Piece(2, 'R', 1), 	// 0
+	new Piece(3, 'K', 1), 	// 1
+	new Piece(4, 'B', 1), 	// 2
+	new Piece(6, '$', 1), 	// 3
+	new Piece(5, 'Q', 1), 	// 4
+	new Piece(4, 'B', 1), 	// 5
+	new Piece(3, 'K', 1), 	// 6
+	new Piece(2, 'R', 1), 	// 7
+	new Pawn(1, 'p', 1),  	// 8
+	new Pawn(1, 'p', 1),  	// 9
+	new Pawn(1, 'p', 1),  	// 10
+	new Pawn(1, 'p', 1),  	// 11
+	new Pawn(1, 'p', 1),  	// 12
+	new Pawn(1, 'p', 1),  	// 13
+	new Pawn(1, 'p', 1),  	// 14
+	new Pawn(1, 'p', 1),  	// 15
 };
 
 void initialize_regular(){
@@ -125,6 +125,23 @@ void rook_move_test(){
 	main_board.at(14).set_tenant(teamB.at(8));
 	main_board.at(49).set_tenant(teamB.at(8));
 	main_board.at(54).set_tenant(teamB.at(8));
+}
+
+void bshp_move_test(){
+	main_board.at(2).set_tenant(teamW.at(2));
+	main_board.at(5).set_tenant(teamW.at(2));
+	main_board.at(58).set_tenant(teamB.at(10));
+	main_board.at(61).set_tenant(teamB.at(10));
+
+}
+
+
+void quen_move_test(){
+	main_board.at(2).set_tenant(teamW.at(4));
+	main_board.at(5).set_tenant(teamW.at(4));
+	main_board.at(58).set_tenant(teamB.at(11));
+	main_board.at(61).set_tenant(teamB.at(11));
+
 }
 
 

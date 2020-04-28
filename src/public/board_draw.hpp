@@ -3,13 +3,13 @@
 
 
 void draw_board(){
-	std::cout << "      A    B    C    D    E    F    G    H" << std::endl;
+	std::cout << GAME_COL << "      A    B    C    D    E    F    G    H" << std::endl;
 	for(int i = 7; i >= 0; i--){
 		for(int j = 0; j < 3; j++){
 			if(j == 0 || j == 2){
-					std::cout << "   |";
+					std::cout << GAME_COL << "   |";
 				} else {
-					std::cout << " " << i+1 << " |";
+					std::cout << GAME_COL << " " << i+1 << " |";
 			}
 			for(int k = 0; k < 8; k++){
 				if(j == 0 || j == 2){
@@ -19,9 +19,9 @@ void draw_board(){
 				}
 			}
 			if(j == 0 || j == 2){
-					std::cout << "|   ";
+					std::cout << GAME_COL << "|   ";
 				} else {
-					std::cout << "| " << i+1 << " ";
+					std::cout << GAME_COL << "| " << i+1 << " ";
 			}
 			std::cout << std::endl;	
 		}

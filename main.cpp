@@ -14,10 +14,15 @@
 #include "src/public/board_draw.hpp"		// fn for drawing board
 #include "src/public/board_setup.hpp"		// fn for setting up pieces on board
 
-#include "src/movesets/pawn_movesets.hpp"
-
 #include "src/public/coord_conversion.hpp"	// for converting a 2 character string into a board coordinate
+#include "src/public/coord_checkers.hpp"	// checks validity of entered coordinates
+
+#include "src/movesets/check_obstruction.hpp"
+#include "src/movesets/pawn_moveset.hpp"
+#include "src/movesets/display_moves.hpp"
+
 #include "src/public/narrator.hpp"
+
 
 
 
@@ -25,8 +30,9 @@ int main(){
 
 	freopen("output.txt", "w", stderr);
 
-	initialize_regular();
-	// initialize_pawn_move_check();
+	// initialize_regular();			// regular chess layout
+	pawn_firstmov_obst();			// test double first move and obstruction
+	// pawn_capture_wrap();			// test to make sure diagonal capture doesnt wrap around the board
 
 	bool run {true};
 	// bool run {false};

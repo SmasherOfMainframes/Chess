@@ -6,18 +6,13 @@
 class Pawn : public Piece
 {
 	private:
-		bool can_capture;
 		bool first_move;
 	
 	public:
 		Pawn(int, char, int);
 
-		// bool get_capture_state();
-		// void set_capture_state(bool);
-
-		virtual bool get_first_move();
-		virtual void set_first_move(bool);
-
+		virtual bool get_first_move() final override;
+		virtual void set_first_move(bool) final override;
 };
 
 

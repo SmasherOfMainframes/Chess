@@ -7,10 +7,16 @@
 
 #include "Piece.hpp"
 
-#define RESET   "\033[0m"
-#define WHITE   "\033[37m"
-#define CYAN    "\033[36m"
-#define MAGENTA "\033[35m"
+extern std::string TEAMW_COL;
+extern std::string TEAMB_COL;
+
+extern std::string WHT_TILE_COL;
+extern std::string BLK_TILE_COL;
+
+extern char WHT_TILE_CHAR;
+extern char BLK_TILE_CHAR;
+
+extern std::string GAME_COL;
 
 class Coordinate
 {
@@ -20,7 +26,9 @@ class Coordinate
 
 		char charset;					// the characters that indicate black or white board tile
 		const char default_charset;		// default character
+		
 		std::string charset_color;
+		std::string default_char_col;
 
 		std::vector<char> generic;
 		std::vector<char> unique;

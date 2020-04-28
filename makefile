@@ -11,7 +11,7 @@ VPATH = src/classes src/public src/movesets bin
 main.exe: $(objects)
 	g++ $(objects) -o main.exe
 
-main.o: $(publics)
+main.o: $(publics) $(movesets)
 
 Coordinate.o: Coordinate.hpp
 

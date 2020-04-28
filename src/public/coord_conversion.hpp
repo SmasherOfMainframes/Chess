@@ -26,6 +26,12 @@ int coord_conversion(std::string _s){
 	return(x_int + 8*y_int);
 }
 
+// literally just a shortcut for moving pieces
+void move(int _initial, int _final){
+	// 9 17
+	main_board.at(_initial).move_tenant(main_board.at(_final));
+}
+
 // testing
 // int test1 = coord_conversion("A1");
 // int test11 = coord_conversion("1A");
@@ -33,7 +39,5 @@ int coord_conversion(std::string _s){
 // int test22 = coord_conversion("4c");
 // int test3 = coord_conversion("H8");
 // std::cout << test1 << " " << test2 << " " << test3 << " " << std::endl; 
-
-
 
 #endif

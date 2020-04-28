@@ -60,12 +60,39 @@ void initialize_regular(){
 	}
 }
 
-void initialize_pawn_move_check(){
-	main_board.at(27).set_tenant(teamW.at(8));
-	main_board.at(27-16+2).set_tenant(teamW.at(9));
-	main_board.at(27+9).set_tenant(teamB.at(0));
-	main_board.at(27+7).set_tenant(teamB.at(1));
-	main_board.at(63).set_tenant(teamB.at(2));
+void pawn_firstmov_obst(){
+	// enmy team obstruction
+	main_board.at(16).set_tenant(teamW.at(8));
+	main_board.at(17).set_tenant(teamW.at(8));
+	main_board.at(18).set_tenant(teamW.at(8));
+	main_board.at(19).set_tenant(teamW.at(8));
+
+	main_board.at(16+8).set_tenant(teamB.at(0));
+	main_board.at(17+16).set_tenant(teamB.at(0));
+	main_board.at(18+24).set_tenant(teamB.at(0));
+	main_board.at(19+32).set_tenant(teamB.at(0));
+
+	// same team obstruction
+	main_board.at(20).set_tenant(teamW.at(8));
+	main_board.at(21).set_tenant(teamW.at(8));
+	main_board.at(22).set_tenant(teamW.at(8));
+	main_board.at(23).set_tenant(teamW.at(8));
+
+	main_board.at(20+8).set_tenant(teamW.at(8));
+	main_board.at(21+16).set_tenant(teamW.at(8));
+	main_board.at(22+24).set_tenant(teamW.at(8));
+	main_board.at(23+32).set_tenant(teamW.at(8));
+}
+void pawn_capture_wrap(){
+	main_board.at(7).set_tenant(teamW.at(8));
+
+	main_board.at(7+7).set_tenant(teamB.at(0));
+	main_board.at(7+9).set_tenant(teamB.at(0));
+
+	main_board.at(40).set_tenant(teamW.at(8));
+
+	main_board.at(40+7).set_tenant(teamB.at(0));
+	main_board.at(40+9).set_tenant(teamB.at(0));
 }
 
 

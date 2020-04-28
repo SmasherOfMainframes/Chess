@@ -11,6 +11,8 @@ class Pawn : public Piece
 	public:
 		Pawn(int, char, int);
 
+		virtual int pawn_promotion(char) final override;
+
 		virtual bool get_first_move() final override;
 		virtual void set_first_move(bool) final override;
 };

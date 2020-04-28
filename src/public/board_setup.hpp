@@ -81,7 +81,7 @@ void pawn_firstmov_obst(){
 	main_board.at(20+8).set_tenant(teamW.at(8));
 	main_board.at(21+16).set_tenant(teamW.at(8));
 	main_board.at(22+24).set_tenant(teamW.at(8));
-	main_board.at(23+24).set_tenant(teamW.at(8));
+	main_board.at(23+24).set_tenant(teamW.at(9));
 }
 void pawn_capture_wrap(){
 	main_board.at(7).set_tenant(teamW.at(8));
@@ -93,6 +93,12 @@ void pawn_capture_wrap(){
 
 	main_board.at(40+7).set_tenant(teamB.at(0));
 	main_board.at(40+9).set_tenant(teamB.at(0));
+
+	main_board.at(38).set_tenant(teamW.at(8));
+	main_board.at(9).set_tenant(teamW.at(8));
+
+	main_board.at(3).set_tenant(teamW.at(8));
+	main_board.at(60).set_tenant(teamB.at(0));
 }
 
 

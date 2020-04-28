@@ -17,6 +17,9 @@ void title(){
 int narrator(){
 	std::string coordinate1;
 	std::string coordinate2;
+	int int_coord1;
+	int int_coord2;
+
 	static int turn {1};
 	static std::string error_message {""};
 	static std::string phase;
@@ -42,8 +45,10 @@ int narrator(){
 		return 0; // break and restart
 	}
 
+	int_coord1 = coord_conversion(coordinate1);
+
 	// Updates the board to show possible moves after the next screen clear
-	display_moves(coord_conversion(coordinate1), turn, phase);
+	display_moves(int_coord1, turn, phase);
 	
 	// --- PHASE 2 --- //
 	phase = "coord2";
@@ -65,16 +70,26 @@ int narrator(){
 		return 0;
 	}
 
-	if(
-		main_board.at(coord_conversion(coordinate1)).get_tenant_rank() == 1
-	    &&
-	    main_board.at(coord_conversion(coordinate1)).get_tenant_first_move() == true
-	    ) {
-		
-		main_board.at(coord_conversion(coordinate1)).set_tenant_first_move(false);
+	int_coord2 = coord_conversion(coordinate2);
+
+	move(int_coord1, int_coord2);
+	
+
+	if(main_board.at(int_coord2).get_tenant_rank() == 1){
+		if(main_board.at(int_coord2).get_tenant_first_move() == true){
+			main_board.at(int_coord2).set_tenant_first_move(false);
+		}
+
+		if(turn==1){
+			if(int_coord2 >= 56){
+				char new_rank;
+				std::cout << "Promote pawn to symbol : " ;
+				std::cin >> new_rank;
+				main_board.at(int_coord2).tenant_pawn_promotion(new_rank);
+			}
+		}
 	}
 
-	move(coord_conversion(coordinate1), coord_conversion(coordinate2));
 	turn*=-1;
 
 	error_message = "";

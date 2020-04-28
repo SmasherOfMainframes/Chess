@@ -96,3 +96,7 @@ bool Coordinate::get_tenant_first_move(){
 void Coordinate::set_tenant_first_move(bool _b){
 	tenant -> set_first_move(_b);
 }
+
+void Coordinate::tenant_pawn_promotion(char new_rank){
+	tenant -> pawn_promotion(new_rank);
+}

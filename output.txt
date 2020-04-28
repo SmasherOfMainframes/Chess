@@ -1,18 +1,35 @@
 Entering pawn_moves()
 Expression = 55
-    _coord = 47
+    _coord = 7
+ _team > 0 = 8
+      team = 1
+Entering first loop
+Entering second loop
+Entering pawn_moves()
+Expression = 55
+    _coord = 40
+ _team > 0 = 41
+      team = 1
+Entering first loop
+Entering second loop
+Entering pawn_moves()
+Expression = 55
+    _coord = 3
+ _team > 0 = 4
       team = 1
 Entering first loop
 Entering second loop
 Entering pawn_moves()
 Expression = 8
-    _coord = 51
+    _coord = 16
+ _team > 0 = 16
       team = -1
 Entering first loop
 Entering second loop
 Entering pawn_moves()
-Expression = 55
-    _coord = 55
-      team = 1
+Expression = 8
+    _coord = 47
+ _team > 0 = 47
+      team = -1
 Entering first loop
 Entering second loop

@@ -27,6 +27,7 @@ void pawn_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord){
 	
 	std::cerr << "Expression = " << 31.5+(_team*23.5) << std::endl;
 	std::cerr << "    _coord = " << _coord << std::endl;
+	std::cerr << " _team > 0 = " << _coord + (_team > 0) << std::endl;
 	std::cerr << "      team = " << _team << std::endl;
 
 	// Checking if the pawn can capture a diagonal enemy
@@ -40,7 +41,7 @@ void pawn_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord){
 		&&
 		main_board.at(_coord + (9 * _team)).get_tenant_team() == _team*-1
 		&&
-		(_coord+1) % 8 != 0
+		(_coord + (_team > 0)) % 8 != 0
 		) 	{
 				_vec.push_back(std::vector<int>{_team*1, _team*1});
 			}
@@ -48,7 +49,7 @@ void pawn_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord){
 	if(
 		main_board.at(_coord + (7 * _team)).get_tenant_team() == _team*-1
 		&&
-		_coord % 8 != 0
+		(_coord + ((_team*-1) > 0)) % 8 != 0
 		) 	{
 				_vec.push_back(std::vector<int>{_team*-1, _team*1});
 	}

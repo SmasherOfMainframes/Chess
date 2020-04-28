@@ -24,3 +24,6 @@ bool Piece::get_first_move(){
 void Piece::set_first_move(bool _b){
 	  
 }
+int Piece::pawn_promotion(char new_rank){
+	  return 0;
+}

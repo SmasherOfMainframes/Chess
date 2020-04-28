@@ -15,9 +15,9 @@ King = 6
 
 class Piece
 {
-	private:
-		const int rank;
-		const char symbol;
+	protected:
+		int rank;
+		char symbol;
 		const int owner;
 
 	public:
@@ -31,6 +31,7 @@ class Piece
 		// Overridden by Pawn class, not used anywhere else.
 		virtual bool get_first_move();
 		virtual void set_first_move(bool);
+		virtual int pawn_promotion(char);
 };
 
 #endif

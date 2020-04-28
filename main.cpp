@@ -23,16 +23,13 @@
 
 #include "src/public/narrator.hpp"
 
-
-
-
 int main(){
 
 	freopen("output.txt", "w", stderr);
 
 	// initialize_regular();			// regular chess layout
 	pawn_firstmov_obst();			// test double first move and obstruction
-	// pawn_capture_wrap();			// test to make sure diagonal capture doesnt wrap around the board
+	// pawn_capture_wrap();				// test to make sure diagonal capture doesnt wrap around the board
 
 	bool run {true};
 	// bool run {false};
@@ -45,7 +42,6 @@ int main(){
 		narrator();
 		system("clear");
 	}
-
 
 	return 0;
 }

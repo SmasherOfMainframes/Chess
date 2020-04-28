@@ -105,6 +105,28 @@ void pawn_promote(){
 	main_board.at(23).set_tenant(teamB.at(0));
 }
 
+void rook_move_test(){
+	// main_board.at(60).set_tenant(teamW.at(0));
+	// main_board.at(30).set_tenant(teamW.at(0));
+	// main_board.at(63).set_tenant(teamW.at(0));
+	// main_board.at(0).set_tenant(teamW.at(0));
+	// main_board.at(24).set_tenant(teamW.at(0));
+	// main_board.at(4).set_tenant(teamW.at(0));
+
+	// main_board.at(57).set_tenant(teamB.at(0));
+	// main_board.at(28).set_tenant(teamB.at(8));
+
+	main_board.at(0).set_tenant(teamW.at(0));
+	main_board.at(7).set_tenant(teamW.at(0));
+	main_board.at(63).set_tenant(teamW.at(0));
+	main_board.at(56).set_tenant(teamW.at(0));
+
+	main_board.at(9).set_tenant(teamB.at(8));
+	main_board.at(14).set_tenant(teamB.at(8));
+	main_board.at(49).set_tenant(teamB.at(8));
+	main_board.at(54).set_tenant(teamB.at(8));
+}
+
 
 
 #endif

@@ -28,10 +28,11 @@ int main(){
 
 	freopen("output.txt", "w", stderr);
 
-	initialize_regular();				// regular chess layout
+	// initialize_regular();				// regular chess layout
 	// pawn_firstmov_obst();				// test double first move and obstruction
 	// pawn_capture_wrap();					// test to make sure diagonal capture doesnt wrap around the board
 	// pawn_promote();						// test pawn promotion
+	rook_move_test();
 
 	bool run {true};
 	// bool run {false};

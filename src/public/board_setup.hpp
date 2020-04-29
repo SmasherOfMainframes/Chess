@@ -144,6 +144,16 @@ void quen_move_test(){
 
 }
 
+void kngt_move_test(){
+	main_board.at(27).set_tenant(teamW.at(1));
+	main_board.at(34).set_tenant(teamW.at(1));
+
+	main_board.at(42).set_tenant(teamW.at(1));
+
+
+
+}
+
 
 
 #endif

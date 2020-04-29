@@ -28,8 +28,8 @@ void display_moves(int _coord, int _turn, std::string _phase){
 				rook_moves(move_vec, _team, _coord);
 				break;
 
-			case 3:
-				// ---
+			case 3: // Knight
+				kngt_moves(move_vec, _team, _coord);
 				break;
 			
 			case 4: // Bishop

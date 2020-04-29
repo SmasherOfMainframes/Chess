@@ -2,8 +2,6 @@
 
 /*
 TODO:
--Add Bishop move function
--Add Queen move function
 -Add King move function
 -Add Knight move function
 
@@ -34,10 +32,13 @@ TODO:
 #include "src/public/coord_checkers.hpp"	// checks validity of entered coordinates
 
 #include "src/movesets/check_obstruction.hpp"
+#include "src/movesets/check_wrap.hpp"
+
 #include "src/movesets/moveset_pawn.hpp"
 #include "src/movesets/moveset_rook.hpp"
 #include "src/movesets/moveset_bshp.hpp"
 #include "src/movesets/moveset_quen.hpp"
+#include "src/movesets/moveset_kngt.hpp"
 #include "src/movesets/display_moves.hpp"
 
 #include "src/public/narrator.hpp"
@@ -52,7 +53,8 @@ int main(){
 	// pawn_promote();						// test pawn promotion
 	// rook_move_test();
 	// bshp_move_test();
-	quen_move_test();
+	// quen_move_test();
+	kngt_move_test();
 
 	bool run {true};
 	// bool run {false};

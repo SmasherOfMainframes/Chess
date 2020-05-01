@@ -22,6 +22,11 @@ int king_check(int _team, std::string &_error_msg){
 	rook_moves(king_vec, _team, king_coord, true);
 	apply_moves(king_vec, king_coord);
 	clear_moves(king_vec, king_coord);
+
+	// Check if Knight can capture
+	kngt_moves(king_vec, _team, king_coord, true);
+	apply_moves(king_vec, king_coord);
+	clear_moves(king_vec, king_coord);
 	
 
 	if(_team == 1 && check_vec_w.size() > 0){

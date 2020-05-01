@@ -21,6 +21,13 @@ int narrator(){
 	static std::string check_message {""};
 	static std::string phase;
 
+	if(turn == 1 && check_vec_w.size() > 0){
+		// check for checkmate
+	}
+	if(turn == -1 && check_vec_b.size() > 0){
+		// check for checkmate
+	}
+
 	// --- PHASE 1 --- ///
 	phase = "coord1";
 

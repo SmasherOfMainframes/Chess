@@ -38,6 +38,8 @@ class Coordinate
 	public:
 		Coordinate(int, int, char);
 
+		Piece* get_tenant();
+
 		int get_x();
 		int get_y();
 
@@ -55,9 +57,12 @@ class Coordinate
 		std::string get_tenant_team_color();
 		int get_tenant_team();
 		char get_tenant_symbol();		// gets the symbol of current piece, if there is one
-		void set_tenant_symbol(char);
+		// void set_tenant_symbol(char);
 		int get_tenant_rank();
+		
 		void set_tenant(Piece*);		// associates a piece
+		int get_tenant_coord();
+		void set_tenant_coord(int);
 		void move_tenant(Coordinate&);	// moves piece
 
 		bool get_tenant_first_move();

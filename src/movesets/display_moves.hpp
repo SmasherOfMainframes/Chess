@@ -50,7 +50,7 @@ void display_moves(int _coord, int _turn, std::string _phase){
 				break;
 
 			case 3: // Knight
-				kngt_moves(move_vec, _team, _coord);
+				kngt_moves(move_vec, _team, _coord, false);
 				break;
 			
 			case 4: // Bishop

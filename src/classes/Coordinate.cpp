@@ -11,6 +11,11 @@ Coordinate::Coordinate(int _x, int _y, char _c)
 	charset_color = default_char_col;
 }
 
+Piece* Coordinate::get_tenant(){
+	return tenant;
+}
+
+
 int Coordinate::get_x(){
 	return pos_x;
 }
@@ -79,13 +84,13 @@ char Coordinate::get_tenant_symbol(){
 		return tenant -> get_symbol();
 	}
 }
-void Coordinate::set_tenant_symbol(char _c){
-	if(!tenant){
-		//
-	} else {
-		tenant -> set_symbol(_c);
-	}
-}
+// void Coordinate::set_tenant_symbol(char _c){
+// 	if(!tenant){
+// 		//
+// 	} else {
+// 		tenant -> set_symbol(_c);
+// 	}
+// }
 int Coordinate::get_tenant_rank(){
 	if(tenant){
 		return tenant -> get_rank();
@@ -96,8 +101,24 @@ int Coordinate::get_tenant_rank(){
 }
 void Coordinate::set_tenant(Piece* ptr){
 	tenant = ptr;
+	if(tenant){
+		tenant -> set_coord((pos_x-1) + ((pos_y-1)*8));
+	}
+}
+void Coordinate::set_tenant_coord(int new_coord){
+	if(tenant){
+		tenant -> set_coord(new_coord);	
+	}
+}
+int Coordinate::get_tenant_coord(){
+	if(tenant){
+		return(tenant -> get_coord());
+	} else {
+		return (-5000);
+	}
 }
 void Coordinate::move_tenant(Coordinate &new_coord){
+	new_coord.set_tenant_coord(-2);
 	new_coord.set_tenant(tenant);
 	set_tenant(nullptr);
 }

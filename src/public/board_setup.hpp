@@ -6,6 +6,15 @@
 std::vector<int> check_vec_w;
 std::vector<int> check_vec_b;
 
+void team_vector_cleaner(std::vector<Piece*> &_vec){
+	for(size_t i = 0; i < _vec.size() ; i++){
+		if(_vec.at(i) -> get_coord() == -2){
+			delete _vec.at(i);
+			_vec.erase(_vec.begin()+i);
+		}
+	}
+}
+
 std::vector<Piece*> teamB {
 	new Pawn(1, 'p', -1),	// 0
 	new Pawn(1, 'p', -1),	// 1
@@ -167,6 +176,7 @@ void check_test(){
 	KING_COORD_W = 3;
 
 	main_board.at(3+9).set_tenant(teamW.at(4));
+	main_board.at(61).set_tenant(teamW.at(1));
 	
 	main_board.at(63).set_tenant(teamB.at(12));
 	KING_COORD_B = 63;

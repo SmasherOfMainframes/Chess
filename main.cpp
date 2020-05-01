@@ -2,7 +2,6 @@
 
 /*
 TODO:
--replace std::endl with \n where possible
 
 -Implement Check game state
 -Implement Checkmate game state
@@ -47,7 +46,7 @@ int main(){
 
 	freopen("output.txt", "w", stderr);
 
-	initialize_regular();				// regular chess layout
+	// initialize_regular();				// regular chess layout
 	// pawn_firstmov_obst();				// test double first move and obstruction
 	// pawn_capture_wrap();					// test to make sure diagonal capture doesnt wrap around the board
 	// pawn_promote();						// test pawn promotion
@@ -56,7 +55,7 @@ int main(){
 	// quen_move_test();
 	// kngt_move_test();
 	// king_move_test();
-	// check_test();
+	check_test();
 
 	bool run {true};
 	// bool run {false};
@@ -64,6 +63,22 @@ int main(){
 	system("clear");
 
 	while(run){
+		team_vector_cleaner(teamW);
+		team_vector_cleaner(teamB);
+
+		// std::cerr << "TEAM BLACK\n";
+		// for(size_t i = 0; i < teamB.size(); i++){
+		// 	if(teamB.at(i) -> get_coord() != -2){
+		// 		std::cerr << teamB.at(i) << " " << teamB.at(i) -> get_symbol() << "\n";
+		// 	}
+		// }
+		// std::cerr << "TEAM WHITE\n";
+		// for(size_t i = 0; i < teamW.size(); i++){
+		// 	if(teamW.at(i) -> get_coord() != -2){
+		// 		std::cerr << teamW.at(i) << " " << teamW.at(i) -> get_symbol() << "\n";
+		// 	}
+		// }
+
 		title();
 		draw_board();
 		narrator();

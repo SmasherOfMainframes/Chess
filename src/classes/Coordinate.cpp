@@ -79,8 +79,20 @@ char Coordinate::get_tenant_symbol(){
 		return tenant -> get_symbol();
 	}
 }
+void Coordinate::set_tenant_symbol(char _c){
+	if(!tenant){
+		//
+	} else {
+		tenant -> set_symbol(_c);
+	}
+}
 int Coordinate::get_tenant_rank(){
-	return tenant -> get_rank();
+	if(tenant){
+		return tenant -> get_rank();
+	} else {
+		return 0;
+	}
+	
 }
 void Coordinate::set_tenant(Piece* ptr){
 	tenant = ptr;

@@ -55,6 +55,7 @@ class Coordinate
 		std::string get_tenant_team_color();
 		int get_tenant_team();
 		char get_tenant_symbol();		// gets the symbol of current piece, if there is one
+		void set_tenant_symbol(char);
 		int get_tenant_rank();
 		void set_tenant(Piece*);		// associates a piece
 		void move_tenant(Coordinate&);	// moves piece

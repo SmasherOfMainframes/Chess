@@ -26,10 +26,22 @@ int coord_conversion(std::string _s){
 	return(x_int + 8*y_int);
 }
 
+
+void move_king_coord(int _team, int _new_coord){
+	if(_team == 1){
+		KING_COORD_W = _new_coord;
+	} else {
+		KING_COORD_B = _new_coord;
+	}
+}
+
+
 // literally just a shortcut for moving pieces
-void move(int _initial, int _final){
-	// 9 17
+void move(int _initial, int _final, int _team){
 	main_board.at(_initial).move_tenant(main_board.at(_final));
+	if(main_board.at(_final).get_tenant_rank() == 6){
+		move_king_coord(_team, _final);	
+	}
 }
 
 // testing

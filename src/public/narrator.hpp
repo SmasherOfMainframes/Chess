@@ -1,18 +1,14 @@
 #ifndef __NARRATOR__
 #define __NARRATOR__
 
-// // move_list_fns.hpp prototypes
-// void pawn_move_list(std::vector<std::vector<int>>);
+extern std::string TEAMW_NAME;
+extern std::string TEAMB_NAME;
 
-// void check_obstruction_pawn(int _coord, std::vector<std::vector<int>> _move_vec, int _team){ 
-// 	if(main_board.at(_coord + (8*_team)).get_tenant_team() != -2){
-// 		_move_vec.at(0).at(1) = 0;
-// 	}
-// }
 
 void title(){
-	std::cout << GAME_COL << "                   ~ CHESS ~\n" << std::endl;
+	std::cout << GAME_COL << "                   ~ CHESS ~\n";
 }
+
 
 int narrator(){
 	std::string coordinate1;
@@ -22,11 +18,15 @@ int narrator(){
 
 	static int turn {1};
 	static std::string error_message {""};
+	static std::string check_message {""};
 	static std::string phase;
 
 	// --- PHASE 1 --- ///
 	phase = "coord1";
 
+	if(check_message.size()>0){
+		std::cout << check_message << std::endl;
+	}
 	if(error_message.size()>1){
 		std::cout << error_message << std::endl;
 	}
@@ -50,6 +50,9 @@ int narrator(){
 	// Updates the board to show possible moves after the next screen clear
 	display_moves(int_coord1, turn, phase);
 	
+
+
+
 	// --- PHASE 2 --- //
 	phase = "coord2";
 
@@ -63,7 +66,7 @@ int narrator(){
 	error_code = check_coord2(coordinate2, turn, phase);
 
 	// Clears the board of all possible moves after next screen clear
-	display_moves(coord_conversion(coordinate1), turn, phase);
+	display_moves(int_coord1, turn, phase);
 	
 	if(error_code){
 		error_code_message(error_code, error_message);
@@ -72,9 +75,17 @@ int narrator(){
 
 	int_coord2 = coord_conversion(coordinate2);
 
-	move(int_coord1, int_coord2);
-	
+	move(int_coord1, int_coord2, turn);
 
+	// Check if moving the piece caused your king to enter Check
+	// If so, undo() the last move
+	if(king_check(turn, error_message)){
+		move(int_coord2, int_coord1, turn); // undo the move
+		return 0;
+	}
+	
+	
+	// Special pawn things
 	if(main_board.at(int_coord2).get_tenant_rank() == 1){
 		if(main_board.at(int_coord2).get_tenant_first_move() == true){
 			main_board.at(int_coord2).set_tenant_first_move(false);
@@ -95,9 +106,22 @@ int narrator(){
 		}
 	}
 
+	// Check if moving the piece causes enemy to enter Check
+	if(king_check(turn*-1, error_message)){
+		if(turn == 1){
+			check_message = TEAMB_NAME + " in check!\n";
+		} else {
+			check_message = TEAMW_NAME + " in check!\n";
+		}
+	} else {
+		check_message = "";
+	}
+
+
 	turn*=-1;
 
 	error_message = "";
+	
 	
 	return 0;
 }

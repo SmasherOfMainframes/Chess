@@ -27,6 +27,7 @@ class Piece
 		int get_rank();
 		int get_owner();
 		char get_symbol();
+		void set_symbol(char);
 
 		// Overridden by Pawn class, not used anywhere else.
 		virtual bool get_first_move();

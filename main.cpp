@@ -2,9 +2,6 @@
 
 /*
 TODO:
--Add King move function
--Add Knight move function
-
 -replace std::endl with \n where possible
 
 -Implement Check game state
@@ -39,7 +36,10 @@ TODO:
 #include "src/movesets/moveset_bshp.hpp"
 #include "src/movesets/moveset_quen.hpp"
 #include "src/movesets/moveset_kngt.hpp"
+#include "src/movesets/moveset_king.hpp"
 #include "src/movesets/display_moves.hpp"
+
+#include "src/public/king_check.hpp"
 
 #include "src/public/narrator.hpp"
 
@@ -47,14 +47,16 @@ int main(){
 
 	freopen("output.txt", "w", stderr);
 
-	// initialize_regular();				// regular chess layout
+	initialize_regular();				// regular chess layout
 	// pawn_firstmov_obst();				// test double first move and obstruction
 	// pawn_capture_wrap();					// test to make sure diagonal capture doesnt wrap around the board
 	// pawn_promote();						// test pawn promotion
 	// rook_move_test();
 	// bshp_move_test();
 	// quen_move_test();
-	kngt_move_test();
+	// kngt_move_test();
+	// king_move_test();
+	// check_test();
 
 	bool run {true};
 	// bool run {false};

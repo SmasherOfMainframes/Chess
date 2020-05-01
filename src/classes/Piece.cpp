@@ -17,6 +17,9 @@ int Piece::get_owner(){
 char Piece::get_symbol(){
 	return symbol;
 }
+void Piece::set_symbol(char _c){
+	symbol = _c;
+}
 
 bool Piece::get_first_move(){
 	return{true};

@@ -3,7 +3,6 @@
 /*
 TODO:
 
--Implement Check game state
 -Implement Checkmate game state
 -Implement Stalemate game state
 

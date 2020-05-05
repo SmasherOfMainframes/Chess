@@ -1,7 +1,7 @@
 #ifndef __KING_CHECK__
 #define __KING_CHECK__
 
-int king_check(int _team, std::string &_error_msg){
+bool king_check(int _team, std::string &_error_msg){
 	std::vector<std::vector<int>> king_vec;
 	int king_coord;
 	if(_team == 1){
@@ -27,19 +27,38 @@ int king_check(int _team, std::string &_error_msg){
 	kngt_moves(king_vec, _team, king_coord, true);
 	apply_moves(king_vec, king_coord);
 	clear_moves(king_vec, king_coord);
+
+	// Check if Pawn can capture
+	pawn_moves(king_vec, _team, king_coord, true);
+	apply_moves(king_vec, king_coord);
+	clear_moves(king_vec, king_coord);
+
+	// Check if other King can capture
+	king_moves(king_vec, _team, king_coord, true);
+	apply_moves(king_vec, king_coord);
+	clear_moves(king_vec, king_coord);
 	
 
 	if(_team == 1 && check_vec_w.size() > 0){
 		_error_msg = "Causes check!\n";
-		return 1;
+		return true;
 	} else if(_team == -1 && check_vec_b.size() > 0){
 		_error_msg = "Causes check!\n";
-		return 1;
+		return true;
 	} else {
 		_error_msg = "";
-		return 0;
+		return false;
 	}
 }
+
+
+// void check_checkmate(int _team){
+// 	if(_team == 1 && check_vec_w.size()>1){
+// 		for(size_t i = 0; i < teamW.size(); i++){
+			
+// 		}
+// 	}
+// }
 
 
 #endif

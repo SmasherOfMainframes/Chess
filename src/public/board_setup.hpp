@@ -177,11 +177,16 @@ void check_test(){
 
 	main_board.at(3+9).set_tenant(teamW.at(4));
 	main_board.at(61).set_tenant(teamW.at(1));
+
+	main_board.at(51-7-8).set_tenant(teamW.at(8));
+	main_board.at(51-9-8).set_tenant(teamW.at(8));
 	
-	main_board.at(63).set_tenant(teamB.at(12));
-	KING_COORD_B = 63;
+	main_board.at(51).set_tenant(teamB.at(12));
+	KING_COORD_B = 51;
 
 	main_board.at(4+17).set_tenant(teamB.at(11));
+
+	main_board.at(18).set_tenant(teamB.at(0));
 }
 
 

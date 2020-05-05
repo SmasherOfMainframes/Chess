@@ -1,7 +1,11 @@
 #ifndef __KING_MS__
 #define __KING_MS__
 
-void king_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord){
+void king_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, bool king_check){
+	int temp_coord;
+	int temp_rank;
+	int temp_team;
+
 	for(int x = -1; x < 2; x++){
 		for(int y = -1; y < 2; y++){
 			if(
@@ -14,6 +18,18 @@ void king_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord){
 				!team_obstruction(_coord + x + (8*y), _team)
 				){
 				_vec.push_back(std::vector<int>{x, y});
+
+				temp_coord = _coord + x + (8*y);
+				temp_team = main_board.at(temp_coord).get_tenant_team();
+				temp_rank = main_board.at(temp_coord).get_tenant_rank();
+
+				if(king_check && temp_team != _team && temp_rank == 6 ){
+					if(_team == 1){
+						check_vec_w.push_back(0);
+					} else {
+						check_vec_b.push_back(0);
+					}
+				}
 			}
 		}
 	}

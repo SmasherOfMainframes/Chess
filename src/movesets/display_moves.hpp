@@ -42,7 +42,7 @@ void display_moves(int _coord, int _turn, std::string _phase){
 		switch(_rank){
 
 			case 1: // Pawn
-				pawn_moves(move_vec, _team, _coord);
+				pawn_moves(move_vec, _team, _coord, false);
 				break;
 
 			case 2: // Rook
@@ -62,7 +62,7 @@ void display_moves(int _coord, int _turn, std::string _phase){
 				break;
 
 			case 6: // King
-				king_moves(move_vec, _team, _coord);
+				king_moves(move_vec, _team, _coord, false);
 				break;
 
 		}

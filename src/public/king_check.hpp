@@ -52,13 +52,25 @@ bool king_check(int _team, std::string &_error_msg){
 }
 
 
-// void check_checkmate(int _team){
-// 	if(_team == 1 && check_vec_w.size()>1){
-// 		for(size_t i = 0; i < teamW.size(); i++){
-			
-// 		}
-// 	}
-// }
+void check_checkmate(int _team){
+	std::vector<std::vector<int>> temp_move_vec;
+	if(_team == 1 && check_vec_w.size() > 0){
+		std::cerr << "TEAM W\n";
+		for(size_t i = 0; i < teamW.size(); i++){
+			int temp_coord = teamW.at(i) -> get_coord();
+			std::cerr << temp_coord << "\n";
+		}
+		std::cerr << "------------\n";
+	}
+	if(_team == -1 && check_vec_b.size() > 0){
+		std::cerr << "TEAM B\n";
+		for(size_t i = 0; i < teamB.size(); i++){
+			int temp_coord = teamB.at(i) -> get_coord();
+			std::cerr << temp_coord << "\n";
+		}
+		std::cerr << "------------\n";
+	}
+}
 
 
 #endif

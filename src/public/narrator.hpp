@@ -21,11 +21,13 @@ int narrator(){
 	static std::string check_message {""};
 	static std::string phase;
 
-	if(turn == 1 && check_vec_w.size() > 0){
-		// check for checkmate
-	}
-	if(turn == -1 && check_vec_b.size() > 0){
-		// check for checkmate
+	team_vector_cleaner(teamW);
+	team_vector_cleaner(teamB);
+
+	if(turn == 1 && check_vec_w.size() > 0
+		||
+	   turn == -1 && check_vec_b.size() > 0){
+		check_checkmate(turn);
 	}
 
 	// --- PHASE 1 --- ///

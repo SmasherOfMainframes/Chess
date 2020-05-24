@@ -11,6 +11,7 @@ TODO:
 
 #include <iostream>
 #include <vector>
+#include <deque>
 #include <string>
 
 #include "src/public/globals.hpp"			// Contains cosmetic info (colors, tile chars, etc)
@@ -62,8 +63,8 @@ int main(){
 	system("clear");
 
 	while(run){
-		team_vector_cleaner(teamW);
-		team_vector_cleaner(teamB);
+		// team_vector_cleaner(teamW);
+		// team_vector_cleaner(teamB);
 
 		// std::cerr << "TEAM BLACK\n";
 		// for(size_t i = 0; i < teamB.size(); i++){

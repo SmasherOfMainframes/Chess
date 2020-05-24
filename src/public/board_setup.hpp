@@ -11,6 +11,7 @@ void team_vector_cleaner(std::vector<Piece*> &_vec){
 		if(_vec.at(i) -> get_coord() == -2){
 			delete _vec.at(i);
 			_vec.erase(_vec.begin()+i);
+			i--;
 		}
 	}
 }
@@ -179,7 +180,7 @@ void check_test(){
 	main_board.at(61).set_tenant(teamW.at(1));
 
 	main_board.at(51-7-8).set_tenant(teamW.at(8));
-	main_board.at(51-9-8).set_tenant(teamW.at(8));
+	main_board.at(51-9-8).set_tenant(teamW.at(9));
 	
 	main_board.at(51).set_tenant(teamB.at(12));
 	KING_COORD_B = 51;

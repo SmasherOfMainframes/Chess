@@ -73,11 +73,7 @@ void display_moves(int _coord, int _turn, std::string _phase){
 
 		// Set tiles of possible moves to special character/color
 		apply_moves(move_vec, _coord);
-		// for(size_t i = 0; i < move_vec.size(); i++){
-		// 	int temp_coord = _coord + move_vec.at(i).at(0) + (8 * move_vec.at(i).at(1));
-		// 	main_board.at(temp_coord).set_charset(MOVES_TILE_CHAR);
-		// 	main_board.at(temp_coord).set_charset_color(MOVES_TILE_COL);
-		// }
+
 	} else if(_phase == "coord2") {
 		clear_moves(move_vec, _coord);
 	}

@@ -6,6 +6,11 @@ TODO:
 -Implement Checkmate game state
 -Implement Stalemate game state
 
+BUGS
+
+-If a piece captures another piece when in check state, without resolving check, the game
+ succesfully prevents the piece from moving, but the would-be captured piece is still captured.
+
 -AI????
 */
 
@@ -77,7 +82,7 @@ int main(){
 		// 	if(teamW.at(i) -> get_coord() != -2){
 		// 		std::cerr << teamW.at(i) << " " << teamW.at(i) -> get_symbol() << "\n";
 		// 	}
-		// }
+		// 
 
 		title();
 		draw_board();

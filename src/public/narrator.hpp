@@ -24,9 +24,11 @@ int narrator(){
 	team_vector_cleaner(teamW);
 	team_vector_cleaner(teamB);
 
-	if(turn == 1 && check_vec_w.size() > 0
+	if(
+		turn == 1 && check_vec_w.size() > 0 
 		||
-	   turn == -1 && check_vec_b.size() > 0){
+		turn == -1 && check_vec_b.size() > 0
+		) {
 		check_checkmate(turn);
 	}
 
@@ -48,7 +50,7 @@ int narrator(){
 
 	// Checks validity of user input, if no errors, returns 0
 	int error_code = check_coord1(coordinate1, turn, phase);
-	//turn this into a function
+
 	if(error_code){
 		error_code_message(error_code, error_message);
 		return 0; // break and restart
@@ -84,12 +86,20 @@ int narrator(){
 
 	int_coord2 = coord_conversion(coordinate2);
 
+	// Need to store any potential enemy piece at coordinate 2
+	// in a temporary variable, to prevent piece from remaining 
+	// captured after the move is possibly reverted in next step.
+	Piece* temp_piece {nullptr};
+	if(main_board.at(int_coord2).get_tenant_team() != -2){
+		temp_piece = main_board.at(int_coord2).get_tenant();
+	}
 	move(int_coord1, int_coord2, turn);
 
 	// Check if moving the piece caused your king to enter Check
-	// If so, undo() the last move
+	// If so, undo() the last move and put any captured piece back
 	if(king_check(turn, error_message)){
 		move(int_coord2, int_coord1, turn); // undo the move
+		main_board.at(int_coord2).set_tenant(temp_piece); // puts the piece back
 		return 0;
 	}
 	

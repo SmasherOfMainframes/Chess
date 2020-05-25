@@ -9,12 +9,13 @@
 #define BLUE    "\033[34m"
 #define MAGENTA "\033[35m"
 #define CYAN    "\033[36m"
-#define WHITE   "\033[37m" 
+#define WHITE   "\033[37m"
+#define BLINK	"\033[5m"
 
-// GLOBALS - Don' assign same tile colors
+// GLOBALS - Don't assign same tile colors
 
 std::string TEAMW_COL	 	{CYAN}; 	// Team 1
-std::string TEAMB_COL 		{MAGENTA};		// Team -1
+std::string TEAMB_COL 		{MAGENTA};	// Team -1
 
 std::string TEAMW_NAME		{"Cyan"};
 std::string TEAMB_NAME		{"Magenta"};

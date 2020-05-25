@@ -176,14 +176,14 @@ void check_test(){
 	main_board.at(3).set_tenant(teamW.at(3));
 	KING_COORD_W = 3;
 
-	main_board.at(3+9).set_tenant(teamW.at(4));
+	main_board.at(51).set_tenant(teamW.at(4));
 	main_board.at(61).set_tenant(teamW.at(1));
 
 	main_board.at(51-7-8).set_tenant(teamW.at(8));
 	main_board.at(51-9-8).set_tenant(teamW.at(9));
 	
-	main_board.at(51).set_tenant(teamB.at(12));
-	KING_COORD_B = 51;
+	main_board.at(59).set_tenant(teamB.at(12));
+	KING_COORD_B = 59;
 
 	main_board.at(4+17).set_tenant(teamB.at(11));
 

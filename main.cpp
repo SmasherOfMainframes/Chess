@@ -3,13 +3,12 @@
 /*
 TODO:
 
--Implement Checkmate game state
+-Implement Checkmate game state (in progress)
 -Implement Stalemate game state
 
 BUGS
 
--If a piece captures another piece when in check state, without resolving check, the game
- succesfully prevents the piece from moving, but the would-be captured piece is still captured.
+-probably lots but i havent found any yet lmaoooo
 
 -AI????
 */
@@ -49,7 +48,7 @@ BUGS
 
 int main(){
 
-	freopen("output.txt", "w", stderr);
+	freopen("debug/output.txt", "w", stderr);
 
 	// initialize_regular();				// regular chess layout
 	// pawn_firstmov_obst();				// test double first move and obstruction
@@ -66,6 +65,11 @@ int main(){
 	// bool run {false};
 
 	system("clear");
+
+	// Need to add a pre-game menu for selecting...
+	//		-Human v Human
+	//		-Human v AI
+	//		-AI v AI
 
 	while(run){
 		// team_vector_cleaner(teamW);

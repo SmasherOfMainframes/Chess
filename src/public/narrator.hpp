@@ -24,12 +24,15 @@ int narrator(){
 	team_vector_cleaner(teamW);
 	team_vector_cleaner(teamB);
 
+	// CHECK CHECKMATE
 	if(
 		turn == 1 && check_vec_w.size() > 0 
 		||
 		turn == -1 && check_vec_b.size() > 0
 		) {
-		check_checkmate(turn);
+		if(check_checkmate_driver(turn)){
+			std::cerr << "CHECKMATE\n";
+		}
 	}
 
 	// --- PHASE 1 --- ///

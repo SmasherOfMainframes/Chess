@@ -185,7 +185,7 @@ void check_test(){
 	main_board.at(59).set_tenant(teamB.at(12));
 	KING_COORD_B = 59;
 
-	main_board.at(4+17).set_tenant(teamB.at(11));
+	// main_board.at(4+17).set_tenant(teamB.at(11));
 
 	main_board.at(18).set_tenant(teamB.at(0));
 }

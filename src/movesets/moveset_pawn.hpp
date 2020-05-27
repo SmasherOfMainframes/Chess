@@ -7,8 +7,17 @@ void pawn_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 	int temp_rank;
 	int temp_team;
 
+	// this hasnt reeeeeeaaaally been tested but i see no reason why it would
+	// fuck things up. Only really needed for king check to prevent seg fault
+	if((_coord >= 56 && _team == 1) || (_coord <= 7 && _team == -1)){
+		return;
+	}
 	// check if a team or enemy piece is blocking one tile ahead
+	// since this is used during king_check, we should simply skip this 
+	// chunk if the this function is being called by a king piece.
 	if(
+		!king_check
+		&&
 		!team_obstruction(_coord + (8*_team), _team)
 	  	&&
 	  	!enmy_obstruction(_coord + (8*_team), _team)
@@ -36,7 +45,7 @@ void pawn_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 	if(
 		_coord != 31.5+(_team*23.5)
 		&&
-		main_board.at(_coord + (9 * _team)).get_tenant_team() == _team*-1
+		main_board.at(_coord + (9 * _team)).get_tenant_team() == _team*-1 // ISSUE
 		&&
 		(_coord + (_team > 0)) % 8 != 0
 		) 	{

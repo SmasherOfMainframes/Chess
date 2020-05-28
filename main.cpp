@@ -3,14 +3,22 @@
 /*
 TODO:
 
--Implement Checkmate game state (in progress)
--Implement Stalemate game state
+-AI!!
+-Implement Stalemate game state? Maybe later not high priority.
 
 BUGS
 
--probably lots but i havent found any yet lmaoooo
+-In the checkmate_test() configuration, the kings moveset is not working properly, shows one 
+ move that is actually illegal. The game will yell at you if you try to make that move, but its
+ still weird that it even shows up as being possible.
 
--AI????
+OPTIMIZATIONS
+-We can definitely optimize how we check for checkmate. Currently, we are simply looking
+ through al available moves. 
+ 	-Maybe we could start by first checking if the king can move 
+ 	 himself out of check, then check if we can kill the piece causing check, THEN go through
+ 	 all possible moves.
+
 */
 
 #include <iostream>

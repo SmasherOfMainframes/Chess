@@ -25,13 +25,17 @@ int narrator(){
 	team_vector_cleaner(teamB);
 
 	// CHECK CHECKMATE
-	if(
-		turn == 1 && check_vec_w.size() > 0 
-		||
-		turn == -1 && check_vec_b.size() > 0
-		) {
-		if(check_checkmate_driver(turn)){
-			std::cerr << "CHECKMATE\n";
+	if(turn == 1 && check_vec_w.size() > 0 ){
+		if(is_checkmate(turn)){
+			std::cout << "Checkmate " <<TEAMW_NAME << ",\n";
+			std::cout << TEAMB_NAME << " wins.\n";
+			return 420;
+		}
+	} else if(turn == -1 && check_vec_b.size() > 0 ){
+		if(is_checkmate(turn)){
+			std::cout << "Checkmate " <<TEAMB_NAME << ",\n";
+			std::cout << TEAMW_NAME << " wins.\n";
+			return 420;
 		}
 	}
 

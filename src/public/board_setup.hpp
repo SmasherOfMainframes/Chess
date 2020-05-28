@@ -190,6 +190,22 @@ void check_test(){
 	main_board.at(18).set_tenant(teamB.at(0));
 }
 
+void checkmate_test(){
+
+	main_board.at(3).set_tenant(teamW.at(3));
+	KING_COORD_W = 3;
+
+	main_board.at(55).set_tenant(teamW.at(7));
+	main_board.at(54).set_tenant(teamW.at(0));
+
+	main_board.at(60).set_tenant(teamB.at(12));
+	KING_COORD_B = 60;
+
+	main_board.at(9).set_tenant(teamB.at(8));
+	main_board.at(8).set_tenant(teamB.at(15));
+
+}
+
 
 
 #endif

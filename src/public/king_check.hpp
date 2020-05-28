@@ -50,25 +50,53 @@ bool king_check(int _team, std::string &_error_msg){
 }
 
 
-bool check_checkmate_driver(int _team){
+bool is_checkmate(int _team){
 	std::vector<std::vector<int>> temp_move_vec;
-	if(_team == 1 && check_vec_w.size() > 0){
-		std::cerr << "TEAM W\n";
-		for(size_t i = 0; i < teamW.size(); i++){
-			int temp_coord = teamW.at(i) -> get_coord();
-			std::cerr << temp_coord << "\n";
+	std::vector<Piece*> temp_team_vec;
+
+	if( (_team == 1 && check_vec_w.size() > 0) || (_team == -1 && check_vec_b.size() > 0) ){
+
+		if(_team == 1){
+			temp_team_vec = teamW;
+		} else {
+			temp_team_vec = teamB;
 		}
-		return true;
-		std::cerr << "------------\n";
-	}
-	if(_team == -1 && check_vec_b.size() > 0){
-		std::cerr << "TEAM B\n";
-		for(size_t i = 0; i < teamB.size(); i++){
-			int temp_coord = teamB.at(i) -> get_coord();
-			std::cerr << temp_coord << "\n";
+
+		for(size_t i = 0; i < temp_team_vec.size(); i++){
+			// coordinate of piece being evaluated
+			int temp_piece_coord = temp_team_vec.at(i) -> get_coord();
+			// return a vector of moves to iterate through to see if any will resolve check
+			temp_move_vec = display_moves(temp_piece_coord, _team, "coord1");
+			
+			for(size_t j = 0; j < temp_move_vec.size(); j++){
+				// coordinate of move
+				int temp_coord = temp_piece_coord + temp_move_vec.at(j).at(0) + (8 * temp_move_vec.at(j).at(1));
+				// store potential enemy piece incase we need to revert
+				Piece* temp_piece {nullptr};
+				if(main_board.at(temp_coord).get_tenant_team() == (_team*-1)){
+					temp_piece = main_board.at(temp_coord).get_tenant();
+				}
+
+				// apply move
+				move(temp_piece_coord, temp_coord, _team);
+
+				// check if it resolves check
+				// if yes, revert move and return false
+				// else revert move and put captured piece back if necesary
+				std::string dummy_message {""};
+				if(!king_check(_team, dummy_message)){
+					move(temp_coord, temp_piece_coord, _team);
+					main_board.at(temp_coord).set_tenant(temp_piece);
+					return false;
+				} else {
+					move(temp_coord, temp_piece_coord, _team);
+					main_board.at(temp_coord).set_tenant(temp_piece);
+				}
+			}
 		}
+		// At this point, all current moves have been evaluated and none resolve check.
+		// Therefor, checkmate
 		return true;
-		std::cerr << "------------\n";
 	}
 	return false;
 }

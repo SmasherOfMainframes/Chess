@@ -59,7 +59,8 @@ int main(){
 	// quen_move_test();
 	// kngt_move_test();
 	// king_move_test();
-	check_test();
+	// check_test();
+	checkmate_test();
 
 	bool run {true};
 	// bool run {false};
@@ -90,7 +91,10 @@ int main(){
 
 		title();
 		draw_board();
-		narrator();
+		if(narrator() == 420){
+			run == false;
+			return 0;
+		}
 		system("clear");
 	}
 

@@ -30,7 +30,7 @@ void apply_moves(std::vector<std::vector<int>> &_vec, int _coord){
 	}
 }
 
-void display_moves(int _coord, int _turn, std::string _phase){
+std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _phase){
 	static std::vector<std::vector<int>> move_vec;
 	if(_phase == "coord1"){
 		
@@ -77,6 +77,8 @@ void display_moves(int _coord, int _turn, std::string _phase){
 	} else if(_phase == "coord2") {
 		clear_moves(move_vec, _coord);
 	}
+
+	return(move_vec);
 
 	
 }

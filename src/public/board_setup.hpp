@@ -113,27 +113,19 @@ void initialize_regular(){
 // 	main_board.at(23).set_tenant(teamB.at(0));
 // }
 
-// void rook_move_test(){
-// 	// main_board.at(60).set_tenant(teamW.at(0));
-// 	// main_board.at(30).set_tenant(teamW.at(0));
-// 	// main_board.at(63).set_tenant(teamW.at(0));
-// 	// main_board.at(0).set_tenant(teamW.at(0));
-// 	// main_board.at(24).set_tenant(teamW.at(0));
-// 	// main_board.at(4).set_tenant(teamW.at(0));
+void rook_move_test(){
+	main_board.at(16).set_tenant(teamW.at(3));
+	KING_COORD_W = 16;
 
-// 	// main_board.at(57).set_tenant(teamB.at(0));
-// 	// main_board.at(28).set_tenant(teamB.at(8));
+	main_board.at(18).set_tenant(teamW.at(7));
+	main_board.at(19).set_tenant(teamW.at(0));
 
-// 	main_board.at(0).set_tenant(teamW.at(0));
-// 	main_board.at(7).set_tenant(teamW.at(0));
-// 	main_board.at(63).set_tenant(teamW.at(0));
-// 	main_board.at(56).set_tenant(teamW.at(0));
+	main_board.at(60).set_tenant(teamB.at(12));
+	KING_COORD_B = 60;
 
-// 	main_board.at(9).set_tenant(teamB.at(8));
-// 	main_board.at(14).set_tenant(teamB.at(8));
-// 	main_board.at(49).set_tenant(teamB.at(8));
-// 	main_board.at(54).set_tenant(teamB.at(8));
-// }
+	main_board.at(22).set_tenant(teamB.at(8));
+	main_board.at(23).set_tenant(teamB.at(15));
+}
 
 // void bshp_move_test(){
 // 	main_board.at(2).set_tenant(teamW.at(2));
@@ -204,6 +196,20 @@ void checkmate_test(){
 	main_board.at(9).set_tenant(teamB.at(8));
 	main_board.at(8).set_tenant(teamB.at(15));
 
+}
+
+void what_the_hell_is_happening(){
+	main_board.at(16).set_tenant(teamW.at(3));
+	KING_COORD_W = 16;
+
+	main_board.at(18).set_tenant(teamW.at(7));
+	main_board.at(19-8).set_tenant(teamW.at(2));
+
+	main_board.at(60).set_tenant(teamB.at(12));
+	KING_COORD_B = 60;
+
+	main_board.at(22).set_tenant(teamB.at(8));
+	main_board.at(23).set_tenant(teamB.at(15));
 }
 
 

@@ -1,7 +1,7 @@
 #ifndef __KING_CHECK__
 #define __KING_CHECK__
 
-bool king_check(int _team, std::string &_error_msg){
+bool king_check(int _team){
 	std::vector<std::vector<int>> king_vec;
 	int king_coord;
 	if(_team == 1){
@@ -38,13 +38,10 @@ bool king_check(int _team, std::string &_error_msg){
 	clear_moves(king_vec, king_coord);
 	
 	if(_team == 1 && check_vec_w.size() > 0){
-		_error_msg = "Causes check!\n";
 		return true;
 	} else if(_team == -1 && check_vec_b.size() > 0){
-		_error_msg = "Causes check!\n";
 		return true;
 	} else {
-		_error_msg = "";
 		return false;
 	}
 }
@@ -84,7 +81,7 @@ bool is_checkmate(int _team){
 				// if yes, revert move and return false
 				// else revert move and put captured piece back if necesary
 				std::string dummy_message {""};
-				if(!king_check(_team, dummy_message)){
+				if(!king_check(_team)){
 					move(temp_coord, temp_piece_coord, _team);
 					main_board.at(temp_coord).set_tenant(temp_piece);
 					return false;
@@ -93,11 +90,25 @@ bool is_checkmate(int _team){
 					main_board.at(temp_coord).set_tenant(temp_piece);
 				}
 			}
+			temp_move_vec = display_moves(temp_piece_coord, _team, "coord2");
 		}
 		// At this point, all current moves have been evaluated and none resolve check.
 		// Therefor, checkmate
 		return true;
 	}
+	return false;
+}
+
+// checks if moving a certain piece opens you up to check. if so, 
+bool is_barrier(int _coord, int _team, bool _king_check){
+	// check if moving the piece will cause check against own king
+	Piece* temp_piece = main_board.at(_coord).get_tenant();
+	main_board.at(_coord).set_tenant(nullptr);
+	if(!_king_check && king_check(_team)){
+		main_board.at(_coord).set_tenant(temp_piece);
+		return true;
+	}
+	main_board.at(_coord).set_tenant(temp_piece);
 	return false;
 }
 

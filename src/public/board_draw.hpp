@@ -3,6 +3,7 @@
 
 
 void draw_board(){
+	std::cout << GAME_COL << "                   ~ CHESS ~\n";
 	std::cout << GAME_COL << "      A    B    C    D    E    F    G    H" << std::endl;
 	for(int i = 7; i >= 0; i--){
 		for(int j = 0; j < 3; j++){

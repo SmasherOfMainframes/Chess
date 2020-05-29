@@ -10,7 +10,7 @@ Quen = 5
 King = 6
 */
 
-
+bool is_barrier(int _coord, int _team, bool _king_check);
 
 void clear_moves(std::vector<std::vector<int>> &_vec, int _coord){
 	for(size_t i = 0; i < _vec.size(); i++){
@@ -32,6 +32,7 @@ void apply_moves(std::vector<std::vector<int>> &_vec, int _coord){
 
 std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _phase){
 	static std::vector<std::vector<int>> move_vec;
+	// check if moving the piece will cause check against own king
 	if(_phase == "coord1"){
 		
 		move_vec.clear();
@@ -46,7 +47,8 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 				break;
 
 			case 2: // Rook
-				rook_moves(move_vec, _team, _coord, false);
+				if(!is_barrier(_coord, _team, false))
+					rook_moves(move_vec, _team, _coord, false);
 				break;
 
 			case 3: // Knight
@@ -54,7 +56,8 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 				break;
 			
 			case 4: // Bishop
-				bshp_moves(move_vec, _team, _coord, false);
+				if(!is_barrier(_coord, _team, false))
+					bshp_moves(move_vec, _team, _coord, false);
 				break;
 
 			case 5: // Queen
@@ -67,7 +70,14 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 
 		}
 
+		// for(size_t i = 0; i < move_vec.size(); i++){
+		// 	std::cerr << i << "\n";
+		// 	std::cerr << "X : " << move_vec.at(i).at(0) << "\n";
+		// 	std::cerr << "Y : " << move_vec.at(i).at(1) << "\n\n";
+		// }
+
 		// Set temporary unique charset for selected piece
+		std::cerr << "self coord\n";
 		main_board.at(_coord).set_charset(SELF_TILE_CHAR);
 		main_board.at(_coord).set_charset_color(MOVES_TILE_COL);
 
@@ -79,8 +89,6 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 	}
 
 	return(move_vec);
-
-	
 }
 
 

@@ -52,9 +52,13 @@ OPTIMIZATIONS
 
 #include "src/public/king_check.hpp"
 
+#include "src/ai/ai.hpp"
+
 #include "src/public/narrator.hpp"
 
 int main(){
+
+	srand(time(NULL));
 
 	freopen("debug/output.txt", "w", stderr);
 
@@ -62,13 +66,14 @@ int main(){
 	// pawn_firstmov_obst();				// test double first move and obstruction
 	// pawn_capture_wrap();					// test to make sure diagonal capture doesnt wrap around the board
 	// pawn_promote();						// test pawn promotion
-	// rook_move_test();
+	rook_move_test();
 	// bshp_move_test();
 	// quen_move_test();
 	// kngt_move_test();
 	// king_move_test();
 	// check_test();
-	checkmate_test();
+	// checkmate_test();
+	// what_the_hell_is_happening();
 
 	bool run {true};
 	// bool run {false};
@@ -79,32 +84,42 @@ int main(){
 	//		-Human v Human
 	//		-Human v AI
 	//		-AI v AI
+	int choice;
+	std::cout << " ~ Bashful Chess ~ \n";
+	std::cout << "1. Human v Human\n2. Human v AI\n3. AI v AI\n";
+	std::cout << "Please enter a choice between 1 and 3 : ";
+	std::cin >> choice;
+	system("clear");
 
-	while(run){
-		// team_vector_cleaner(teamW);
-		// team_vector_cleaner(teamB);
+	// 1 = White, -1 = black
+	int turn {1};
 
-		// std::cerr << "TEAM BLACK\n";
-		// for(size_t i = 0; i < teamB.size(); i++){
-		// 	if(teamB.at(i) -> get_coord() != -2){
-		// 		std::cerr << teamB.at(i) << " " << teamB.at(i) -> get_symbol() << "\n";
-		// 	}
-		// }
-		// std::cerr << "TEAM WHITE\n";
-		// for(size_t i = 0; i < teamW.size(); i++){
-		// 	if(teamW.at(i) -> get_coord() != -2){
-		// 		std::cerr << teamW.at(i) << " " << teamW.at(i) -> get_symbol() << "\n";
-		// 	}
-		// 
+	switch(choice){
+		case 1:
+			while(run){
+				draw_board();
+				if(narrator("human") == 420){
+					return 0;
+				}
+				system("clear");
 
-		title();
-		draw_board();
-		if(narrator() == 420){
-			run == false;
-			return 0;
-		}
-		system("clear");
-	}
+			}
+			break;
+
+		case 2:
+			while(run){
+				draw_board();
+				narrator("human");
+				system("clear");
+
+				draw_board();
+				narrator("bot");
+				system("clear");
+			}
+
+	} 
+
+	
 
 	return 0;
 }

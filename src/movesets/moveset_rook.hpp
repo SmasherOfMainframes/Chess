@@ -1,12 +1,18 @@
 #ifndef __ROOK_MS__
 #define __ROOK_MS__
 
+// bool is_barrier(int _coord, int _team, bool _king_check);
 
-void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, bool king_check){
+void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, bool _king_check){
 
 	int temp_coord;
 	int temp_rank;
 	int temp_team;
+
+	// check if moving the piece will cause check against own king
+	// if(is_barrier(_coord, _team, _king_check)){
+	// 	return;
+	// }
 
 	for(int i = 0; i < (7-(_coord%8)); i++){
 		
@@ -17,7 +23,7 @@ void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 		if(team_obstruction(temp_coord, _team)){break;}
 		_vec.push_back(std::vector<int>{i+1, 0});
 		if(enmy_obstruction(temp_coord, _team)){
-			if(king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
+			if(_king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
 				if(_team == 1){
 					check_vec_w.push_back(0);
 				} else {
@@ -36,7 +42,7 @@ void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 		if(team_obstruction(temp_coord, _team)){break;}
 		_vec.push_back(std::vector<int>{(-1*i)-1, 0});
 		if(enmy_obstruction(temp_coord, _team)){
-			if(king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
+			if(_king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
 				if(_team == 1){
 					check_vec_w.push_back(0);
 				} else {
@@ -56,7 +62,7 @@ void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 		if(team_obstruction(temp_coord, _team)){break;}
 		_vec.push_back(std::vector<int>{0, i+1});
 		if(enmy_obstruction(temp_coord, _team)){
-			if(king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
+			if(_king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
 				if(_team == 1){
 					check_vec_w.push_back(0);
 				} else {
@@ -75,7 +81,7 @@ void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 		if(team_obstruction(temp_coord, _team)){break;}
 		_vec.push_back(std::vector<int>{0, (-1*i)-1});
 		if(enmy_obstruction(temp_coord, _team)){
-			if(king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
+			if(_king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
 				if(_team == 1){
 					check_vec_w.push_back(0);
 				} else {

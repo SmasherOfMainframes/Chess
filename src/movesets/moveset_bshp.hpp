@@ -1,6 +1,7 @@
 #ifndef __BSHP_MS__
 #define __BSHP_MS__
 
+// bool is_barrier(int _coord, int _team, bool _king_check);
 
 void bshp_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, bool king_check){
 

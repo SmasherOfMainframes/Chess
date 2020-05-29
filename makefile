@@ -1,6 +1,6 @@
 CC 			= g++
 
-VPATH 		= src/classes src/public src/movesets bin
+VPATH 		= src/classes src/public src/movesets src/ai bin
 
 CPPFLAGS 	= -g -Wall
 
@@ -11,13 +11,14 @@ OBJS 		= 	main.o\
 
 PUBLIC 		= src/public/*
 MOVESET 	= src/movesets/*
+AI 			= src/ai/*
 
 OUTPUT 		= bin/main
 
 $(OUTPUT): $(OBJS)
 	$(CC) $(OBJS) -o $(OUTPUT)
 
-main.o: $(PUBLIC) $(MOVESET)
+main.o: $(PUBLIC) $(MOVESET) $(AI)
 
 Coordinate.o: Coordinate.hpp
 

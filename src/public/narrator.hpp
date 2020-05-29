@@ -4,17 +4,13 @@
 extern std::string TEAMW_NAME;
 extern std::string TEAMB_NAME;
 
-
-void title(){
-	std::cout << GAME_COL << "                   ~ CHESS ~\n";
-}
-
-
-int narrator(){
+int narrator(std::string user){
+	std::vector<std::vector<int>> ai_move_vec;
 	std::string coordinate1;
 	std::string coordinate2;
 	int int_coord1;
 	int int_coord2;
+	int error_code;
 
 	static int turn {1};
 	static std::string error_message {""};
@@ -53,45 +49,51 @@ int narrator(){
 	std::cout << active << "'s turn." << std::endl;
 
 	std::cout << "Enter coordinate of piece to move : ";
-	std::cin >> coordinate1;
+	if(user == "human"){
+		std::cin >> coordinate1;
+		// Checks validity of user input, if no errors, returns 0
+		int error_code = check_coord1(coordinate1, turn, phase);
 
-	// Checks validity of user input, if no errors, returns 0
-	int error_code = check_coord1(coordinate1, turn, phase);
+		if(error_code){
+			error_code_message(error_code, error_message);
+			return 0; // break and restart
+		}
 
-	if(error_code){
-		error_code_message(error_code, error_message);
-		return 0; // break and restart
+		int_coord1 = coord_conversion(coordinate1);
+	} else if(user == "bot"){
+		int_coord1 = teamB.at(rand()%teamB.size()) -> get_coord();
 	}
 
-	int_coord1 = coord_conversion(coordinate1);
-
 	// Updates the board to show possible moves after the next screen clear
-	display_moves(int_coord1, turn, phase);
-	
-
-
+	ai_move_vec = display_moves(int_coord1, turn, phase);
 
 	// --- PHASE 2 --- //
 	phase = "coord2";
 
 	system("clear");
-	title();
 	draw_board();
 	
-	std::cout << "Enter coordinate of target : ";
-	std::cin >> coordinate2;
+	if(user == "human"){
+		std::cout << "Enter coordinate of target : ";
+		std::cin >> coordinate2;
 
-	error_code = check_coord2(coordinate2, turn, phase);
+		error_code = check_coord2(coordinate2, turn, phase);
 
-	// Clears the board of all possible moves after next screen clear
-	display_moves(int_coord1, turn, phase);
-	
-	if(error_code){
-		error_code_message(error_code, error_message);
-		return 0;
+		// Clears the board of all possible moves after next screen clear
+		display_moves(int_coord1, turn, phase);
+		
+		if(error_code){
+			error_code_message(error_code, error_message);
+			return 0;
+		}
+
+		int_coord2 = coord_conversion(coordinate2);
+	} else if(user == "bot"){
+		display_moves(int_coord1, turn, phase);
+		int randint = rand()%ai_move_vec.size();
+		int_coord2 = int_coord1 + ai_move_vec.at(randint).at(0) + (8*ai_move_vec.at(randint).at(1));
 	}
-
-	int_coord2 = coord_conversion(coordinate2);
+	
 
 	// Need to store any potential enemy piece at coordinate 2
 	// in a temporary variable, to prevent piece from remaining 
@@ -104,7 +106,7 @@ int narrator(){
 
 	// Check if moving the piece caused your king to enter Check
 	// If so, undo() the last move and put any captured piece back
-	if(king_check(turn, error_message)){
+	if(king_check(turn)){
 		move(int_coord2, int_coord1, turn); // undo the move
 		main_board.at(int_coord2).set_tenant(temp_piece); // puts the piece back
 		return 0;
@@ -133,7 +135,7 @@ int narrator(){
 	}
 
 	// Check if moving the piece causes enemy to enter Check
-	if(king_check(turn*-1, error_message)){
+	if(king_check(turn*-1)){
 		if(turn == 1){
 			check_message = TEAMB_NAME + " in check!\n";
 		} else {
@@ -143,11 +145,8 @@ int narrator(){
 		check_message = "";
 	}
 
-
-	turn*=-1;
-
+	turn *= -1;
 	error_message = "";
-	
 	
 	return 0;
 }

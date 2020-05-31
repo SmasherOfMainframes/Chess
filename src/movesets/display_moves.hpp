@@ -32,7 +32,7 @@ void apply_moves(std::vector<std::vector<int>> &_vec, int _coord){
 
 std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _phase){
 	static std::vector<std::vector<int>> move_vec;
-	// check if moving the piece will cause check against own king
+	
 	if(_phase == "coord1"){
 		
 		move_vec.clear();
@@ -43,7 +43,12 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 		switch(_rank){
 
 			case 1: // Pawn
-				pawn_moves(move_vec, _team, _coord, false);
+				// check if moving the piece will cause check against own king
+				// THIS DOESNT WORK, if there is a pawn infront of king, and enemy rook
+				// infront of said pawn, pawn will not be able to move. need to check EVERY
+				// legal move to see if it will cause check.
+				if(!is_barrier(_coord, _team, false))
+					pawn_moves(move_vec, _team, _coord, false);
 				break;
 
 			case 2: // Rook
@@ -52,7 +57,8 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 				break;
 
 			case 3: // Knight
-				kngt_moves(move_vec, _team, _coord, false);
+				if(!is_barrier(_coord, _team, false))
+					kngt_moves(move_vec, _team, _coord, false);
 				break;
 			
 			case 4: // Bishop
@@ -61,7 +67,8 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 				break;
 
 			case 5: // Queen
-				quen_moves(move_vec, _team, _coord);
+				if(!is_barrier(_coord, _team, false))
+					quen_moves(move_vec, _team, _coord);
 				break;
 
 			case 6: // King

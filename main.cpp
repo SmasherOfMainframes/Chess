@@ -3,7 +3,8 @@
 /*
 TODO:
 
--AI!!
+-AI is in place but is totally random. Add some minimax
+
 -Implement Stalemate game state? Maybe later not high priority.
 
 BUGS
@@ -62,11 +63,11 @@ int main(){
 
 	freopen("debug/output.txt", "w", stderr);
 
-	// initialize_regular();				// regular chess layout
+	initialize_regular();				// regular chess layout
 	// pawn_firstmov_obst();				// test double first move and obstruction
 	// pawn_capture_wrap();					// test to make sure diagonal capture doesnt wrap around the board
 	// pawn_promote();						// test pawn promotion
-	rook_move_test();
+	// rook_move_test();
 	// bshp_move_test();
 	// quen_move_test();
 	// kngt_move_test();
@@ -80,10 +81,6 @@ int main(){
 
 	system("clear");
 
-	// Need to add a pre-game menu for selecting...
-	//		-Human v Human
-	//		-Human v AI
-	//		-AI v AI
 	int choice;
 	std::cout << " ~ Bashful Chess ~ \n";
 	std::cout << "1. Human v Human\n2. Human v AI\n3. AI v AI\n";
@@ -108,8 +105,26 @@ int main(){
 
 		case 2:
 			while(run){
+				
+				while(true){
+					system("clear");
+					draw_board();
+					if(narrator("human") == 1)
+						break;
+					
+				}
+
 				draw_board();
-				narrator("human");
+				narrator("bot");
+				system("clear");
+			}
+
+		// broken as fuck rn not at all usable
+		case 3:
+			while(run){
+				
+				draw_board();
+				narrator("bot");
 				system("clear");
 
 				draw_board();

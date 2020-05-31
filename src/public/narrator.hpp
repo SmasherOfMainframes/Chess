@@ -60,12 +60,27 @@ int narrator(std::string user){
 		}
 
 		int_coord1 = coord_conversion(coordinate1);
+		ai_move_vec = display_moves(int_coord1, turn, phase);
+
 	} else if(user == "bot"){
-		int_coord1 = teamB.at(rand()%teamB.size()) -> get_coord();
+		bool go {true};
+		while(go){
+			srand(time(NULL));
+			std::vector<Piece*> temp_team_vec;
+			temp_team_vec = (turn == 1) ? teamW : teamB;
+			int_coord1 = temp_team_vec.at(rand()%temp_team_vec.size()) -> get_coord();
+			ai_move_vec = display_moves(int_coord1, turn, phase);
+			if(ai_move_vec.size() == 0){
+				display_moves(int_coord1, turn, "coord2");
+			} else {
+				go = false;
+			}
+		}
+		
 	}
 
 	// Updates the board to show possible moves after the next screen clear
-	ai_move_vec = display_moves(int_coord1, turn, phase);
+	// ai_move_vec = display_moves(int_coord1, turn, phase);
 
 	// --- PHASE 2 --- //
 	phase = "coord2";
@@ -148,7 +163,7 @@ int narrator(std::string user){
 	turn *= -1;
 	error_message = "";
 	
-	return 0;
+	return 1;
 }
 
 #endif

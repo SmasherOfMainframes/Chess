@@ -212,6 +212,58 @@ void what_the_hell_is_happening(){
 	main_board.at(23).set_tenant(teamB.at(15));
 }
 
+void bshp_checkmate(){
+	main_board.at(0).set_tenant(teamW.at(3));
+	KING_COORD_W = 0;
+
+	main_board.at(1).set_tenant(teamW.at(7));
+	// main_board.at(19-8).set_tenant(teamW.at(2));
+
+	main_board.at(23).set_tenant(teamB.at(12));
+	KING_COORD_B = 23;
+
+	main_board.at(7).set_tenant(teamB.at(10));
+	// main_board.at(23).set_tenant(teamB.at(15));
+}
+
+void rook_checkmate(){
+	main_board.at(0).set_tenant(teamW.at(3));
+	KING_COORD_W = 0;
+
+	main_board.at(1).set_tenant(teamW.at(7));
+
+	main_board.at(23).set_tenant(teamB.at(12));
+	KING_COORD_B = 23;
+
+	main_board.at(13).set_tenant(teamB.at(8));
+}
+
+void kngt_checkmate(){
+	main_board.at(0).set_tenant(teamW.at(0));
+	KING_COORD_W = 0;
+
+	main_board.at(1).set_tenant(teamW.at(7));
+
+	main_board.at(23).set_tenant(teamB.at(12));
+	KING_COORD_B = 23;
+
+	main_board.at(13).set_tenant(teamB.at(9));
+}
+
+void pawn_checkmate(){
+	main_board.at(56).set_tenant(teamW.at(3));
+	KING_COORD_W = 56;
+
+	main_board.at(1).set_tenant(teamW.at(7));
+	main_board.at(41).set_tenant(teamW.at(8));
+
+	main_board.at(23).set_tenant(teamB.at(12));
+	KING_COORD_B = 23;
+
+	main_board.at(6+32).set_tenant(teamB.at(0));
+	main_board.at(3).set_tenant(teamB.at(8));
+}
+
 
 
 #endif

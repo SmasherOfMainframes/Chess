@@ -1,7 +1,7 @@
 #ifndef __ROOK_MS__
 #define __ROOK_MS__
 
-// bool is_barrier(int _coord, int _team, bool _king_check);
+bool is_barrier(int _coord1, int _coord2, int _team, bool _king_check);
 
 void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, bool _king_check){
 
@@ -14,6 +14,8 @@ void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 	// 	return;
 	// }
 
+	int _coord2;
+
 	for(int i = 0; i < (7-(_coord%8)); i++){
 		
 		temp_coord = _coord+1+i;
@@ -21,7 +23,13 @@ void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 		temp_rank = main_board.at(temp_coord).get_tenant_rank();
 
 		if(team_obstruction(temp_coord, _team)){break;}
-		_vec.push_back(std::vector<int>{i+1, 0});
+
+		_coord2 = _coord + (i+1);
+		if(!is_barrier(_coord, _coord2, _team, _king_check)){
+			_vec.push_back(std::vector<int>{i+1, 0});
+		}
+
+		
 		if(enmy_obstruction(temp_coord, _team)){
 			if(_king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
 				if(_team == 1){
@@ -40,7 +48,12 @@ void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 		temp_rank = main_board.at(temp_coord).get_tenant_rank();
 
 		if(team_obstruction(temp_coord, _team)){break;}
-		_vec.push_back(std::vector<int>{(-1*i)-1, 0});
+
+		_coord2 = _coord + ((-1*i)-1);
+		if(!is_barrier(_coord, _coord2, _team, _king_check)){
+			_vec.push_back(std::vector<int>{(-1*i)-1, 0});
+		}
+
 		if(enmy_obstruction(temp_coord, _team)){
 			if(_king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
 				if(_team == 1){
@@ -60,7 +73,12 @@ void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 		temp_rank = main_board.at(temp_coord).get_tenant_rank();
 
 		if(team_obstruction(temp_coord, _team)){break;}
-		_vec.push_back(std::vector<int>{0, i+1});
+
+		_coord2 = _coord + (8*(i+1));
+		if(!is_barrier(_coord, _coord2, _team, _king_check)){
+			_vec.push_back(std::vector<int>{0, i+1});
+		}
+
 		if(enmy_obstruction(temp_coord, _team)){
 			if(_king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
 				if(_team == 1){
@@ -79,7 +97,12 @@ void rook_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 		temp_rank = main_board.at(temp_coord).get_tenant_rank();
 
 		if(team_obstruction(temp_coord, _team)){break;}
-		_vec.push_back(std::vector<int>{0, (-1*i)-1});
+
+		_coord2 = _coord + (8*((-1*i)-1));
+		if(!is_barrier(_coord, _coord2, _team, _king_check)){
+			_vec.push_back(std::vector<int>{0, (-1*i)-1});
+		}
+
 		if(enmy_obstruction(temp_coord, _team)){
 			if(_king_check && temp_team != _team && ((temp_rank == 2) || (temp_rank == 5)) ){
 				if(_team == 1){

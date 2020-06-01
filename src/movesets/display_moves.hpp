@@ -10,7 +10,7 @@ Quen = 5
 King = 6
 */
 
-bool is_barrier(int _coord, int _team, bool _king_check);
+bool is_barrier(int _coord1, int _coord2, int _team, bool _king_check);
 
 void clear_moves(std::vector<std::vector<int>> &_vec, int _coord){
 	for(size_t i = 0; i < _vec.size(); i++){
@@ -47,28 +47,29 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 				// THIS DOESNT WORK, if there is a pawn infront of king, and enemy rook
 				// infront of said pawn, pawn will not be able to move. need to check EVERY
 				// legal move to see if it will cause check.
-				if(!is_barrier(_coord, _team, false))
-					pawn_moves(move_vec, _team, _coord, false);
+				
+				// if(!is_barrier(_coord, _team, false))
+				pawn_moves(move_vec, _team, _coord, false);
 				break;
 
 			case 2: // Rook
-				if(!is_barrier(_coord, _team, false))
-					rook_moves(move_vec, _team, _coord, false);
+				// if(!is_barrier(_coord, _team, false))
+				rook_moves(move_vec, _team, _coord, false);
 				break;
 
 			case 3: // Knight
-				if(!is_barrier(_coord, _team, false))
-					kngt_moves(move_vec, _team, _coord, false);
+				// if(!is_barrier(_coord, _team, false))
+				kngt_moves(move_vec, _team, _coord, false);
 				break;
 			
 			case 4: // Bishop
-				if(!is_barrier(_coord, _team, false))
-					bshp_moves(move_vec, _team, _coord, false);
+				// if(!is_barrier(_coord, _team, false))
+				bshp_moves(move_vec, _team, _coord, false);
 				break;
 
 			case 5: // Queen
-				if(!is_barrier(_coord, _team, false))
-					quen_moves(move_vec, _team, _coord);
+				// if(!is_barrier(_coord, _team, false))
+				quen_moves(move_vec, _team, _coord);
 				break;
 
 			case 6: // King
@@ -84,7 +85,6 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 		// }
 
 		// Set temporary unique charset for selected piece
-		std::cerr << "self coord\n";
 		main_board.at(_coord).set_charset(SELF_TILE_CHAR);
 		main_board.at(_coord).set_charset_color(MOVES_TILE_COL);
 

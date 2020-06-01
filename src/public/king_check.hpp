@@ -100,16 +100,26 @@ bool is_checkmate(int _team){
 }
 
 // checks if moving a certain piece opens you up to check. if so, 
-bool is_barrier(int _coord, int _team, bool _king_check){
-	// check if moving the piece will cause check against own king
-	Piece* temp_piece = main_board.at(_coord).get_tenant();
-	main_board.at(_coord).set_tenant(nullptr);
+bool is_barrier(int _coord1, int _coord2, int _team, bool _king_check){
+	// store potential enemy piece
+	Piece* enemy = main_board.at(_coord2).get_tenant();
+
+	// // store actual piece
+	// Piece* actual = main_board.at(_coord1).get_tenant();
+
+	// move actual piece to coord2
+	move(_coord1, _coord2, _team);
+
+	// king check
 	if(!_king_check && king_check(_team)){
-		main_board.at(_coord).set_tenant(temp_piece);
+		move(_coord2, _coord1, _team);
+		main_board.at(_coord2).set_tenant(enemy);
 		return true;
+	} else {
+		move(_coord2, _coord1, _team);
+		main_board.at(_coord2).set_tenant(enemy);
+		return false;
 	}
-	main_board.at(_coord).set_tenant(temp_piece);
-	return false;
 }
 
 #endif

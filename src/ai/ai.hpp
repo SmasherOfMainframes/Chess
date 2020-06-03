@@ -53,6 +53,9 @@ std::pair<int, std::vector<int>> minimax(int _team, int _depth, std::vector<int>
 
 	// check if other team is checkmated
 	bool cmate {is_checkmate(_team)};
+	bool cmate_other {is_checkmate(_team*-1)};
+	std::cerr << move_vec.at(0) << " " << move_vec.at(1) << std::endl;
+	std::cerr << "cmate? " << cmate << " " << cmate_other << "\n\n";
 	if(_depth == 0 || cmate){
 		int bonus {0};
 		if(cmate){
@@ -71,48 +74,37 @@ std::pair<int, std::vector<int>> minimax(int _team, int _depth, std::vector<int>
 			int coord1 = all_moves_vec.at(i).at(0);
 			int coord2 = all_moves_vec.at(i).at(1);
 
-			// std::cerr << coord1 << " " << coord2 << "\n";
-
-			// create a copy of the team vector to be reset later
-			// std::vector<Piece*> teamW_copy = teamW;
-			// std::vector<Piece*> teamB_copy = teamB;
-
 			Piece* temp_enemy = main_board.at(coord2).get_tenant();
 			move(coord1, coord2, _team);
-
-			// team_vector_cleaner(teamW);
-			// team_vector_cleaner(teamB);
-
-			// std::cerr << "TEAM WHITE\n";
-			// for(size_t i = 0; i < teamW.size(); i++){
-			// 	std::cerr << teamW.at(i)->get_coord() << " ";
-			// }
-			// std::cerr << "\n";
-			// std::cerr << "TEAM BLACK\n";
-			// for(size_t i = 0; i < teamB.size(); i++){
-			// 	std::cerr << teamB.at(i)->get_coord() << " ";
-			// }
-			// std::cerr << "\n\n";
+			king_check(_team*-1);
 
 			std::pair<int, std::vector<int>> value = minimax(_team*-1, _depth-1, all_moves_vec.at(i));
 			
 			if(_team == 1 && std::get<int>(value) > std::get<int>(current_best)){
-				current_best = value;
+				current_best = std::make_pair(std::get<int>(value), all_moves_vec.at(i));
 			} else if(_team == -1 && std::get<int>(value) < std::get<int>(current_best)){
-				current_best = value;
+				current_best = std::make_pair(std::get<int>(value), all_moves_vec.at(i));
 			}
+
+			
 
 			move(coord2, coord1, _team); // move piece back
 			main_board.at(coord2).set_tenant(temp_enemy);
-
-			// teamW = teamW_copy;
-			// teamB = teamB_copy;
 		}
 		return current_best;
 	}
 	
 }
 
-
+// std::cerr << "TEAM WHITE\n";
+// for(size_t i = 0; i < teamW.size(); i++){
+// 	std::cerr << teamW.at(i)->get_coord() << " ";
+// }
+// std::cerr << "\n";
+// std::cerr << "TEAM BLACK\n";
+// for(size_t i = 0; i < teamB.size(); i++){
+// 	std::cerr << teamB.at(i)->get_coord() << " ";
+// }
+// std::cerr << "\n\n";
 
 #endif

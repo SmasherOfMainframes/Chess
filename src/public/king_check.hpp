@@ -60,6 +60,7 @@ bool is_checkmate(int _team){
 		}
 
 		for(size_t i = 0; i < temp_team_vec.size(); i++){
+			if(temp_team_vec.at(i)->get_coord() == -2){break;}
 			// coordinate of piece being evaluated
 			int temp_piece_coord = temp_team_vec.at(i) -> get_coord();
 			// return a vector of moves to iterate through to see if any will resolve check

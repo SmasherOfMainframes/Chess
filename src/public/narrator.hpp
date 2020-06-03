@@ -52,8 +52,8 @@ int narrator(std::string user){
 	std::string active = (turn == 1) ? TEAMW_NAME : TEAMB_NAME ;
 	std::cout << active << "'s turn." << std::endl;
 
-	std::cout << "Enter coordinate of piece to move : ";
 	if(user == "human"){
+		std::cout << "Enter coordinate of piece to move : ";
 		std::cin >> coordinate1;
 		// Checks validity of user input, if no errors, returns 0
 		int error_code = check_coord1(coordinate1, turn, phase);
@@ -67,19 +67,7 @@ int narrator(std::string user){
 		display_moves(int_coord1, turn, phase);
 
 	} else if(user == "bot"){
-		// bool go {true};
-		// while(go){
-		// 	srand(time(NULL));
-		// 	std::vector<Piece*> temp_team_vec;
-		// 	temp_team_vec = (turn == 1) ? teamW : teamB;
-		// 	int_coord1 = temp_team_vec.at(rand()%temp_team_vec.size()) -> get_coord();
-		// 	ai_move_vec = display_moves(int_coord1, turn, phase);
-		// 	if(ai_move_vec.size() == 0){
-		// 		display_moves(int_coord1, turn, "coord2");
-		// 	} else {
-		// 		go = false;
-		// 	}
-		// }
+		std::cout << "Bot thinking...\n";
 		std::vector<int> dummy {0,0};
 		
 		std::pair<int, std::vector<int>> minimax_move = minimax(turn, 3, dummy);
@@ -87,11 +75,11 @@ int narrator(std::string user){
 		int ai_coord1 = std::get<1>(minimax_move).at(0);
 		int ai_coord2 = std::get<1>(minimax_move).at(1);
 
-		cerr_teams();
+		std::cerr << ai_coord1 << " " << ai_coord2 << std::endl;
+
 		move(ai_coord1, ai_coord2, turn);
 		team_vector_cleaner(teamW);
 		team_vector_cleaner(teamB);
-		cerr_teams();
 		int_coord1 = ai_coord1;
 		int_coord2 = ai_coord2;
 	}

@@ -252,8 +252,8 @@ void checkmate_test(){
 	main_board.at(60).set_tenant(teamB.at(12));
 	KING_COORD_B = 60;
 
-	// main_board.at(9).set_tenant(teamB.at(8));
-	// main_board.at(8).set_tenant(teamB.at(15));
+	main_board.at(9).set_tenant(teamB.at(8));
+	main_board.at(8).set_tenant(teamB.at(15));
 
 }
 

@@ -3,15 +3,12 @@
 /*
 TODO:
 
--AI is in place but is totally random. Add some minimax
+-No implementation for AI pawn promotion.
+-NEED to do more testing of AI.
 
 -Implement Stalemate game state? Maybe later not high priority.
 
 BUGS
-
--In the checkmate_test() configuration, the kings moveset is not working properly, shows one 
- move that is actually illegal. The game will yell at you if you try to make that move, but its
- still weird that it even shows up as being possible.
 
 OPTIMIZATIONS
 -We can definitely optimize how we check for checkmate. Currently, we are simply looking
@@ -115,14 +112,20 @@ int main(){
 				while(true){
 					system("clear");
 					draw_board();
-					if(narrator("human") == 1)
+					int nar = narrator("human");
+					if(nar == 1)
 						break;
-					
+					if(nar == 420)
+						return 0;
 				}
 
-				draw_board();
-				narrator("bot");
+				// draw_board();
 				system("clear");
+				draw_board();	
+				if(narrator("bot") == 420){
+					return 0;
+				}
+				// system("clear");
 			}
 
 		// broken as fuck rn not at all usable

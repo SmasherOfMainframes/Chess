@@ -21,18 +21,21 @@ void king_moves(std::vector<std::vector<int>> &_vec, int &_team, int _coord, boo
 				) { 
 				// need to add king_check() for each move to prevent invalid moves
 				// from being added to move vector. 
-				int temp_king_coord_w = KING_COORD_W;
-				int temp_king_coord_b = KING_COORD_B;
+				// int temp_king_coord_w = KING_COORD_W;
+				// int temp_king_coord_b = KING_COORD_B;
 				
-				KING_COORD_W += (x + (8*y));
-				KING_COORD_B += (x + (8*y));
+				// KING_COORD_W += (x + (8*y));
+				// KING_COORD_B += (x + (8*y));
 
-				if((!_king_check) && !(king_check(_team))){
+				// if((!_king_check) && !(king_check(_team))){
+				// 	_vec.push_back(std::vector<int>{x, y});
+				// }
+
+				// KING_COORD_W = temp_king_coord_w;
+				// KING_COORD_B = temp_king_coord_b;
+				if((!_king_check) && !is_barrier(_coord, _coord+x+(8*y), _team, _king_check)){
 					_vec.push_back(std::vector<int>{x, y});
 				}
-
-				KING_COORD_W = temp_king_coord_w;
-				KING_COORD_B = temp_king_coord_b;
 
 				temp_coord = _coord + x + (8*y);
 				temp_team = main_board.at(temp_coord).get_tenant_team();

@@ -20,6 +20,10 @@ int narrator(std::string user){
 	team_vector_cleaner(teamW);
 	team_vector_cleaner(teamB);
 
+	// TESTIN
+	// all_moves(turn);
+	// std::cerr << get_board_value() << "\n\n";
+
 	// CHECK CHECKMATE
 	if(turn == 1 && check_vec_w.size() > 0 ){
 		if(is_checkmate(turn)){
@@ -60,23 +64,36 @@ int narrator(std::string user){
 		}
 
 		int_coord1 = coord_conversion(coordinate1);
-		ai_move_vec = display_moves(int_coord1, turn, phase);
+		display_moves(int_coord1, turn, phase);
 
 	} else if(user == "bot"){
-		bool go {true};
-		while(go){
-			srand(time(NULL));
-			std::vector<Piece*> temp_team_vec;
-			temp_team_vec = (turn == 1) ? teamW : teamB;
-			int_coord1 = temp_team_vec.at(rand()%temp_team_vec.size()) -> get_coord();
-			ai_move_vec = display_moves(int_coord1, turn, phase);
-			if(ai_move_vec.size() == 0){
-				display_moves(int_coord1, turn, "coord2");
-			} else {
-				go = false;
-			}
-		}
+		// bool go {true};
+		// while(go){
+		// 	srand(time(NULL));
+		// 	std::vector<Piece*> temp_team_vec;
+		// 	temp_team_vec = (turn == 1) ? teamW : teamB;
+		// 	int_coord1 = temp_team_vec.at(rand()%temp_team_vec.size()) -> get_coord();
+		// 	ai_move_vec = display_moves(int_coord1, turn, phase);
+		// 	if(ai_move_vec.size() == 0){
+		// 		display_moves(int_coord1, turn, "coord2");
+		// 	} else {
+		// 		go = false;
+		// 	}
+		// }
+		std::vector<int> dummy {0,0};
 		
+		std::pair<int, std::vector<int>> minimax_move = minimax(turn, 3, dummy);
+
+		int ai_coord1 = std::get<1>(minimax_move).at(0);
+		int ai_coord2 = std::get<1>(minimax_move).at(1);
+
+		cerr_teams();
+		move(ai_coord1, ai_coord2, turn);
+		team_vector_cleaner(teamW);
+		team_vector_cleaner(teamB);
+		cerr_teams();
+		int_coord1 = ai_coord1;
+		int_coord2 = ai_coord2;
 	}
 
 	// Updates the board to show possible moves after the next screen clear
@@ -103,29 +120,31 @@ int narrator(std::string user){
 		}
 
 		int_coord2 = coord_conversion(coordinate2);
-	} else if(user == "bot"){
-		display_moves(int_coord1, turn, phase);
-		int randint = rand()%ai_move_vec.size();
-		int_coord2 = int_coord1 + ai_move_vec.at(randint).at(0) + (8*ai_move_vec.at(randint).at(1));
-	}
+		move(int_coord1, int_coord2, turn);
+	} 
+
+
 	
 
+	// i dont think any of this chunk is needed anymore now that im not being lazy,
+	// but im too lazy and scared to delete it so here it remains
 	// Need to store any potential enemy piece at coordinate 2
 	// in a temporary variable, to prevent piece from remaining 
 	// captured after the move is possibly reverted in next step.
-	Piece* temp_piece {nullptr};
-	if(main_board.at(int_coord2).get_tenant_team() != -2){
-		temp_piece = main_board.at(int_coord2).get_tenant();
-	}
-	move(int_coord1, int_coord2, turn);
+	// Piece* temp_piece {nullptr};
+	// if(main_board.at(int_coord2).get_tenant_team() != -2){
+	// 	temp_piece = main_board.at(int_coord2).get_tenant();
+	// }
+	// move(int_coord1, int_coord2, turn);
 
-	// Check if moving the piece caused your king to enter Check
-	// If so, undo() the last move and put any captured piece back
-	if(king_check(turn)){
-		move(int_coord2, int_coord1, turn); // undo the move
-		main_board.at(int_coord2).set_tenant(temp_piece); // puts the piece back
-		return 0;
-	}
+	// // Check if moving the piece caused your king to enter Check
+	// // If so, undo() the last move and put any captured piece back
+	// if(king_check(turn)){
+	// 	move(int_coord2, int_coord1, turn); // undo the move
+	// 	main_board.at(int_coord2).set_tenant(temp_piece); // puts the piece back
+	// 	return 0;
+	// }
+	// std::cerr << "FINISHED PIECE POINTER BS\n";
 	
 	
 	// Special pawn things
@@ -159,6 +178,7 @@ int narrator(std::string user){
 	} else {
 		check_message = "";
 	}
+
 
 	turn *= -1;
 	error_message = "";

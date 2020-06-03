@@ -104,9 +104,6 @@ bool is_barrier(int _coord1, int _coord2, int _team, bool _king_check){
 	// store potential enemy piece
 	Piece* enemy = main_board.at(_coord2).get_tenant();
 
-	// // store actual piece
-	// Piece* actual = main_board.at(_coord1).get_tenant();
-
 	// move actual piece to coord2
 	move(_coord1, _coord2, _team);
 

@@ -43,32 +43,22 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 		switch(_rank){
 
 			case 1: // Pawn
-				// check if moving the piece will cause check against own king
-				// THIS DOESNT WORK, if there is a pawn infront of king, and enemy rook
-				// infront of said pawn, pawn will not be able to move. need to check EVERY
-				// legal move to see if it will cause check.
-				
-				// if(!is_barrier(_coord, _team, false))
 				pawn_moves(move_vec, _team, _coord, false);
 				break;
 
 			case 2: // Rook
-				// if(!is_barrier(_coord, _team, false))
 				rook_moves(move_vec, _team, _coord, false);
 				break;
 
 			case 3: // Knight
-				// if(!is_barrier(_coord, _team, false))
 				kngt_moves(move_vec, _team, _coord, false);
 				break;
 			
 			case 4: // Bishop
-				// if(!is_barrier(_coord, _team, false))
 				bshp_moves(move_vec, _team, _coord, false);
 				break;
 
 			case 5: // Queen
-				// if(!is_barrier(_coord, _team, false))
 				quen_moves(move_vec, _team, _coord);
 				break;
 
@@ -77,12 +67,6 @@ std::vector<std::vector<int>> display_moves(int _coord, int _turn, std::string _
 				break;
 
 		}
-
-		// for(size_t i = 0; i < move_vec.size(); i++){
-		// 	std::cerr << i << "\n";
-		// 	std::cerr << "X : " << move_vec.at(i).at(0) << "\n";
-		// 	std::cerr << "Y : " << move_vec.at(i).at(1) << "\n\n";
-		// }
 
 		// Set temporary unique charset for selected piece
 		main_board.at(_coord).set_charset(SELF_TILE_CHAR);

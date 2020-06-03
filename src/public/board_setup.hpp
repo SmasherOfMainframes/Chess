@@ -57,6 +57,64 @@ std::vector<Piece*> teamW {
 };
 int KING_COORD_W;
 
+void cerr_teams(){
+	for(size_t i = 0; i < teamW.size(); i++){
+		std::cerr << teamW.at(i)->get_coord() << " ";
+	}
+	std::cerr << "\n";
+	for(size_t i = 0; i < teamB.size(); i++){
+		std::cerr << teamB.at(i)->get_coord() << " ";
+	}
+	std::cerr << std::endl << std::endl;
+}
+
+void piece_value_assign(){
+	for(size_t i = 0; i < teamW.size(); i++){
+		switch(teamW.at(i)->get_rank()){
+			case 1:
+				teamW.at(i)->set_value(10);
+				break;
+			case 2:
+				teamW.at(i)->set_value(50);
+				break;
+			case 3:
+				teamW.at(i)->set_value(30);
+				break;
+			case 4:
+				teamW.at(i)->set_value(30);
+				break;
+			case 5:
+				teamW.at(i)->set_value(90);
+				break;
+			case 6:
+				teamW.at(i)->set_value(900);
+				break;
+		}
+	}
+	for(size_t i = 0; i < teamB.size(); i++){
+		switch(teamB.at(i)->get_rank()){
+			case 1:
+				teamB.at(i)->set_value(-10);
+				break;
+			case 2:
+				teamB.at(i)->set_value(-50);
+				break;
+			case 3:
+				teamB.at(i)->set_value(-30);
+				break;
+			case 4:
+				teamB.at(i)->set_value(-30);
+				break;
+			case 5:
+				teamB.at(i)->set_value(-90);
+				break;
+			case 6:
+				teamB.at(i)->set_value(-900);
+				break;
+		}
+	}
+}
+
 void initialize_regular(){
 	for(int i = 0; i < 16; i++){
 		main_board.at(i).set_tenant(teamW.at(i));
@@ -187,14 +245,15 @@ void checkmate_test(){
 	main_board.at(3).set_tenant(teamW.at(3));
 	KING_COORD_W = 3;
 
-	main_board.at(55).set_tenant(teamW.at(7));
-	main_board.at(54).set_tenant(teamW.at(0));
+	// main_board.at(55).set_tenant(teamW.at(7));
+	// main_board.at(54).set_tenant(teamW.at(0));
+	main_board.at(52).set_tenant(teamW.at(8));
 
 	main_board.at(60).set_tenant(teamB.at(12));
 	KING_COORD_B = 60;
 
-	main_board.at(9).set_tenant(teamB.at(8));
-	main_board.at(8).set_tenant(teamB.at(15));
+	// main_board.at(9).set_tenant(teamB.at(8));
+	// main_board.at(8).set_tenant(teamB.at(15));
 
 }
 

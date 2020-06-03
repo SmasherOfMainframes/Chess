@@ -40,3 +40,10 @@ void Piece::set_first_move(bool _b){
 int Piece::pawn_promotion(char new_rank){
 	  return 0;
 }
+
+int Piece::get_value(){
+	return value;
+}
+void Piece::set_value(int val){
+	value = val;
+}

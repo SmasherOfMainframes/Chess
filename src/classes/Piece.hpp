@@ -18,6 +18,7 @@ class Piece
 	protected:
 		int coord;
 		int rank;
+		int value;
 		char symbol;
 		const int owner;
 
@@ -37,6 +38,9 @@ class Piece
 		virtual bool get_first_move();
 		virtual void set_first_move(bool);
 		virtual int pawn_promotion(char);
+
+		int get_value();
+		void set_value(int val);
 };
 
 #endif
